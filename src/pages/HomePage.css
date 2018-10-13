@@ -1,0 +1,38 @@
+.SearchSection {
+    width: 60%;
+    background-color: #ccc;
+    height: 20%;
+    padding: 16px;
+    border-radius: 12px;
+}
+.SearchForm {
+    display: flex;
+
+
+}
+
+.SearchButton {
+    outline: none;
+    border: none;
+    margin: 0px 16px;
+    padding: 0;
+    background: transparent;
+    font-size: 1.2em;
+}
+
+.SearchBar {
+    display :block;
+    margin:none;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    width: 90%;
+    height: 2.4em;
+    padding: 2px 4px;
+    font-size: 1.2em;
+    margin: 0;
+}
+
+.Title {
+
+}

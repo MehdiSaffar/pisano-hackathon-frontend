@@ -5,4 +5,5 @@ export const icons = {
     trash: fontAwesome.faTrash,
     envelope: fontAwesome.faEnvelope,
     lock: fontAwesome.faLock,
+    search: fontAwesome.faSearch,
 }

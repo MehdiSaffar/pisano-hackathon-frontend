@@ -1,0 +1,3 @@
+[submodule "src/mobx"]
+	path = src/mobx
+	url = https://github.com/MehdiSaffar/pisano-hackathon-mobx.git
