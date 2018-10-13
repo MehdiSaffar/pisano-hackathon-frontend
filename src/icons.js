@@ -6,4 +6,5 @@ export const icons = {
     envelope: fontAwesome.faEnvelope,
     lock: fontAwesome.faLock,
     search: fontAwesome.faSearch,
+    document: fontAwesome.faFile,
 }
