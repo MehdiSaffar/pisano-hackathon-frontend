@@ -26,7 +26,7 @@ class StepCard extends Component {
                 </div>
                 <div className={classes.StepCardRight}>
                     <h1 className={classes.StepCardTitle}>{this.props.title}</h1>
-                    <p>Lorem ipsum dolo Phasellus varius porta ipsum. Donec molestie eu augue a molestie. Nam in sem vulputate, volutpat magna sed, egestas velit. Fusce quis eros velit. Integer tempor, urna vitae egestas laoreet, est mauris mollis ante, quis aliquet libero dui quis velit. </p>
+                    <p>{this.props.description}</p>
                 </div>
                 <input
                     onChange={this.checkStepCard}

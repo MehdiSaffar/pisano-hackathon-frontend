@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react"
 import { withRouter } from "react-router"
 import { observer, inject } from "mobx-react"
 import { observable, computed } from "mobx"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import classes from "./DocumentPage.css"
 import StepCard from "./../../components/StepCard/StepCard"
 
@@ -13,14 +12,16 @@ class DocumentPage extends Component {
     get documentStore() {
         return this.props.store.document
     }
+
+    componentDidMount() {
+        this.documentStore.getDocument(this.props.match.params.documentName)
+    }
+
     onStepCardClicked = (id, name) => {
         this.documentStore.getDocument(id)
         this.props.history.push('/document/' + name)
     }
 
-    componentDidMount() {
-        this.documentStore.getDocument(this.props.match.params.documentName)
-    }
     render() {
         const title = (
             <h1>
@@ -36,7 +37,7 @@ class DocumentPage extends Component {
                             onClick={() => this.onStepCardClicked(doc.id, doc.name)}
                             title={doc.name}
                             rank={index + 1}
-                            description="some description"
+                            description={doc.description}
                         />
                     )
                 })}
