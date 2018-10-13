@@ -25,7 +25,7 @@ class DocumentPage extends Component {
     render() {
         const title = (
             <h1>
-                Here are the steps for obtaining a {this.documentStore.currentDocument.name}
+                {this.documentStore.currentDocument.name} almak için almanız gereken belgeler
             </h1>
         )
         const cards = (

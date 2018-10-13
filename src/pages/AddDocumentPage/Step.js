@@ -6,10 +6,10 @@ export default class Step extends React.Component {
         return (
             <div style={{ display: "flex" }}>
                 <p style={{ margin: 0 }}>{this.props.children}</p>
-                {this.props.showAdd && (
-                    <Button onClick={this.props.onAddClick}>add</Button>
-                )}
             </div>
         )
     }
 }
+                // {this.props.showAdd && (
+                //     <Button onClick={this.props.onAddClick}>add</Button>
+                // )}
