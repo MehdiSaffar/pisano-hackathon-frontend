@@ -1,11 +1,12 @@
 import React from 'react'
 import Button from './../../containers/UI/Form/Button/Button';
+import classes from './Step.css'
 
 export default class Step extends React.Component {
     render() {
         return (
             <div style={{ display: "flex" }}>
-                <p style={{ margin: 0 }}>{this.props.children}</p>
+                <p className={classes.Step}>{this.props.children}</p>
             </div>
         )
     }
