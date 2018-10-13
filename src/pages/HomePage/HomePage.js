@@ -65,17 +65,6 @@ class HomePage extends Component {
                                     {item.label}
                                 </div>
                             )}
-                            inputProps={{className: classes.SearchBar}}
-                            // renderInput={props => {
-
-                            //   console.log(props)
-                            //   return <input
-                            //         className={classes.SearchBar}
-                            //         value={props.value}
-                            //         onChange={props.onChange}
-                            //         placeholder="Document name"
-                            //     />
-                            // }}
                             value={this.searchText}
                             onChange={this.onSearchTextChanged}
                             onSelect={(itemName) => this.searchText = itemName}
@@ -86,7 +75,6 @@ class HomePage extends Component {
                     </form>
                 </div>
             </div>
-
         )
     }
 }
