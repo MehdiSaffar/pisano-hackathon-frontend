@@ -1,21 +1,29 @@
 .SearchSection {
     width: 60%;
     background-color: #ccc;
-    height: 20%;
     padding: 16px;
     border-radius: 12px;
 }
-.SearchForm {
+.SearchForm{
     display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.SearchForm>div {
+    width: 100%;
 }
 
 .SearchButton {
     outline: none;
     border: none;
-    margin: 0px 16px;
-    padding: 0;
+    position: absolute;
+    right: 0;
+    height: 100%;
+    padding: 0 6px;
     background: transparent;
     font-size: 1.2em;
+    cursor: pointer;
 }
 
 .SearchBar {
@@ -24,7 +32,7 @@
     outline: none;
     border: none;
     border-radius: 4px;
-    width: 90%;
+    width: 100%;
     height: 2.4em;
     padding: 2px 4px;
     font-size: 1.2em;
@@ -40,4 +48,5 @@
 }
 
 .Title {
+    font-size: 1.1em;
 }
