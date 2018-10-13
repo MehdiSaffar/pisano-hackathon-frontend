@@ -1,0 +1,31 @@
+.StepCard {
+    /* width: 100%; */
+    margin: 32px;
+    min-height: 100px;
+    background-color: #ccc;
+    border-radius: 32px;
+    padding: 10px;
+    display: flex;
+}
+
+.StepCardLeft {
+    flex: 0 0 20px;
+    align-self: center;
+    font-size: 2em;
+    padding: 20px;
+    text-align: center;
+}
+
+.StepCardTitle {
+    margin-top: 0;
+
+}
+
+.StepCardRight {
+    flex: 1 1 auto;
+
+}
+.StepCardCheckbox {
+    flex: 0 0 auto;
+    align-self: center;
+}
