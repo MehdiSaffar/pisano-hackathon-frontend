@@ -5,10 +5,11 @@ import { observable, computed, autorun, action } from "mobx"
 // import icons from "../../icons"
 
 import classes from "./AddDocumentPage.css"
-import inputClasses from '../../containers/UI/Form/Input/Input.css'
+import inputClasses from "../../containers/UI/Form/Input/Input.css"
 import { TreeView } from "./../../containers/UI/TreeView/TreeView"
 import uuidV1 from "uuid/v1"
 import ReactAutocomplete from "react-autocomplete"
+import Button from "./../../containers/UI/Form/Button/Button"
 
 // class Node {
 
@@ -95,15 +96,10 @@ class AddDocumentPage extends Component {
         }
 
         data.name = step.name
-        if (data.description) data.description = step.description
+        data.description = step.description || ""
         data.dependencies = step.children.map(el => this.getData(el)) || []
 
         return data
-    }
-
-    onAddStepFromForm = () => {
-        this.currentStep.name = this.stepName
-        this.currentStep.description = this.stepDescription
     }
 
     @observable
@@ -122,9 +118,12 @@ class AddDocumentPage extends Component {
                 {tree}
                 <form onSubmit={this.onSubmitForm}>
                     <ReactAutocomplete
-                        // items={this.documentStore.allExistingDocuments}
-                        items={mockItems}
+                        items={this.documentStore.allExistingDocuments}
+                        // items={mockItems}
                         shouldItemRender={(item, value) => {
+                            console.log("item.name", item.name)
+                            console.log("value", value)
+
                             const ret =
                                 item.name
                                     .toLowerCase()
@@ -133,8 +132,8 @@ class AddDocumentPage extends Component {
 
                             return ret
                         }}
-                        getItemValue={item => item.id}
-                        renderItem={(item) => {
+                        getItemValue={item => item.name}
+                        renderItem={item => {
                             console.log("renderItem", item)
                             return (
                                 <div
@@ -147,21 +146,33 @@ class AddDocumentPage extends Component {
                         }}
                         // inputProps={{ className: classes.SearchBar }}
                         renderInput={props => (
-                            <input {...props} className={inputClasses.InputElement}/>
+                            <input
+                                {...props}
+                                placeholder="Document name"
+                                className={inputClasses.InputElement}
+                            />
                         )}
-                        inputProps={{type: "text"}}
                         value={this.currentStep.name}
                         onChange={event => {
                             this.currentStep.name = event.target.value
                         }}
-                        onSelect={itemValue => {
-                            this.currentStep.id = itemValue
+                        onSelect={(_, item) => {
+                            console.log("onselect", item)
+                            this.currentStep.id = item.id
+                            this.currentStep.name = item.name
                         }}
                     />
-                    <button onClick={() => this.onAddStepFromForm()}>
-                        Add step
-                    </button>
-                    <button type="submit">Submit</button>
+
+                    <textarea
+                        // icon={icons.document}
+                        className={inputClasses.InputElement}
+                        value={this.currentStep.description}
+                        onChange={event =>
+                            (this.currentStep.description = event.target.value)
+                        }
+                        placeholder="Document description"
+                    />
+                    <Button type="submit">Submit</Button>
                 </form>
             </div>
         )
@@ -184,24 +195,13 @@ class Step extends React.Component {
             <div style={{ display: "flex" }}>
                 <p style={{ margin: 0 }}>{this.props.children}</p>
                 {this.props.showAdd && (
-                    <button
-                        onClick={this.props.onAddClick}
-                        style={{ marginLeft: "auto" }}
-                    >
-                        add
-                    </button>
+                    <Button onClick={this.props.onAddClick}>add</Button>
                 )}
             </div>
         )
     }
 }
 
-// <Input
-//     label="Document name"
-//     // icon={icons.document}
-//     value={this.documentName}
-//     placeholder="Document name"
-// />
 // <div>
 //     <p>Dependencies</p>
 //     {this.dependencyInputs.map((input, index) => {
