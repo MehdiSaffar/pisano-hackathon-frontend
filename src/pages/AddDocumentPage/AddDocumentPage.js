@@ -10,7 +10,7 @@ import { TreeView } from "./../../containers/UI/TreeView/TreeView"
 import uuidV1 from "uuid/v1"
 import ReactAutocomplete from "react-autocomplete"
 import Button from "./../../containers/UI/Form/Button/Button"
-import Step from "../../components/Step/Step"
+import Step from "./Step"
 
 // class Node {
 
@@ -137,6 +137,9 @@ class AddDocumentPage extends Component {
             />
         )
         const submit = <Button type="submit">Submit</Button>
+        const addStepButton = (
+            <Button onClick={this.onAddStepClick}>Add Step</Button>
+        )
         const form = (
             <form
                 onSubmit={this.onSubmitForm}
@@ -145,6 +148,7 @@ class AddDocumentPage extends Component {
                 {title}
                 {name}
                 {description}
+                {addStepButton}
                 {submit}
             </form>
         )
@@ -152,6 +156,11 @@ class AddDocumentPage extends Component {
         return (
             <div className={classes.AddDocumentPage}>
                 <h1>Yeni Süreç Ekle</h1>
+                {this.steps.name === null ? (
+                    <p>Please enter a new step!</p>
+                ) : (
+                    tree
+                )}
                 {tree}
                 {form}
             </div>

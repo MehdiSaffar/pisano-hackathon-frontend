@@ -37,6 +37,4 @@ class StepCard extends Component {
         )
     }
 }
-                    // <p>{this.props.description}</p>
-
 export default StepCard
