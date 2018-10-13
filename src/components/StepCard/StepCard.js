@@ -1,13 +1,26 @@
 import React, { Component } from "react"
 import { inject, observer } from "mobx-react"
 import classes from "./StepCard.css"
+import { observable } from "mobx"
 
 @inject("store")
 @observer
 class StepCard extends Component {
+
+    @observable checked = false;
+
+    checkStepCard = () => {
+        let checked_local = this.checked;
+        this.checked = !checked_local;
+    }
+
     render() {
+        const class_arr = [classes.StepCard];
+        if(this.checked){
+            class_arr.push(classes.StepCardChecked);
+        }
         return (
-            <div className={classes.StepCard} onClick={this.props.onClick}>
+            <div className={class_arr.join(' ')} onClick={this.props.onClick}>
                 <div className={classes.StepCardLeft}>
                     {this.props.rank}
                 </div>
@@ -15,7 +28,11 @@ class StepCard extends Component {
                     <h1 className={classes.StepCardTitle}>{this.props.title}</h1>
                     <p>Lorem ipsum dolo Phasellus varius porta ipsum. Donec molestie eu augue a molestie. Nam in sem vulputate, volutpat magna sed, egestas velit. Fusce quis eros velit. Integer tempor, urna vitae egestas laoreet, est mauris mollis ante, quis aliquet libero dui quis velit. </p>
                 </div>
-                <input type="checkbox" className={classes.StepCardCheckbox}/>
+                <input
+                    onChange={this.checkStepCard}
+                    type="checkbox"
+                    className={classes.StepCardCheckbox}/>
+                <span className={classes.StepCardCheckmark}></span>
             </div>
         )
     }

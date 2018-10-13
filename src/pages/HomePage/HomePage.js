@@ -34,38 +34,59 @@ class HomePage extends Component {
 
     render() {
         return (
-            <div className={classes.SearchSection}>
-                <h1 className={classes.Title}>
-                    What document would you like to obtain?
-                </h1>
-                <form
-                    className={classes.SearchForm}
-                    onSubmit={this.onSearchSubmit}
-                >
-                    <ReactAutocomplete
-                        items={mockItems}
-                        shouldItemRender={(item, value) =>
-                            item.label
-                                .toLowerCase()
-                                .indexOf(value.toLowerCase()) > -1
-                        }
-                        getItemValue={item => item.label}
-                        renderItem={(item, highlighted) => (
-                            <div
-                                key={item.id}
-                            >
-                                {item.label}
-                            </div>
-                        )}
-                        value={this.searchText}
-                        onChange={this.onSearchTextChanged}
-                        onSelect={(itemName) => this.searchText = itemName}
-                    />
-                    <button className={classes.SearchButton}>
-                        <FontAwesomeIcon icon="search" />
-                    </button>
-                </form>
+            <div className={classes.Container}>
+                <div className={classes.Header}>
+                    <img src="https://via.placeholder.com/200x150" alt="Some logo"/>
+                    <h1>Product Name</h1>
+                </div>
+                <div className={classes.SearchSection}>
+                    <h2 className={classes.Title}>
+                        Hangi resmi işini halletmek için buradasın...
+                    </h2>
+                    <form
+                        className={classes.SearchForm}
+                        onSubmit={this.onSearchSubmit}
+                    >
+                        <ReactAutocomplete
+                            items={mockItems}
+                            shouldItemRender={(item, value) =>
+                                item.label
+                                    .toLowerCase()
+                                    .indexOf(value.toLowerCase()) > -1
+                            }
+                            getItemValue={item => item.label}
+                            renderItem={(item, highlighted) => (
+                                <div
+                                    key={item.id}
+                                    className={[
+                                        classes.SearchBarItem
+                                    ]}
+                                >
+                                    {item.label}
+                                </div>
+                            )}
+                            inputProps={{className: classes.SearchBar}}
+                            // renderInput={props => {
+
+                            //   console.log(props)
+                            //   return <input
+                            //         className={classes.SearchBar}
+                            //         value={props.value}
+                            //         onChange={props.onChange}
+                            //         placeholder="Document name"
+                            //     />
+                            // }}
+                            value={this.searchText}
+                            onChange={this.onSearchTextChanged}
+                            onSelect={(itemName) => this.searchText = itemName}
+                        />
+                        <button className={classes.SearchButton}>
+                            <FontAwesomeIcon icon="search" />
+                        </button>
+                    </form>
+                </div>
             </div>
+
         )
     }
 }
