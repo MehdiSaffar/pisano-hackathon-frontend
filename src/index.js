@@ -5,13 +5,9 @@ import App from "./App"
 import registerServiceWorker from "./registerServiceWorker"
 import { library } from "@fortawesome/fontawesome-svg-core"
 import { BrowserRouter } from "react-router-dom"
-import { Provider } from 'mobx-react'
-import DocumentStore from './mobx/store/DocumentStore';
-import { icons } from './icons';
-
-const store = new function() {
-    this.document=  new DocumentStore(this)
-}
+import { Provider } from "mobx-react"
+import { icons } from "./icons"
+import store from "./mobx/store"
 
 const ic = Object.keys(icons).map(iconName => icons[iconName])
 library.add(...ic)
