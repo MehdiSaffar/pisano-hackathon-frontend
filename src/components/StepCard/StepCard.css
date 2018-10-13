@@ -3,10 +3,13 @@
     position: relative;
     margin: 32px;
     min-height: 100px;
-    background-color: rgba(237, 174, 37, .7);
+    background-color: rgba(0, 255, 0, 0.5);
     padding: 10px;
     display: flex;
     max-width: 80%;
+    -webkit-box-shadow: 6px 6px 5px 0px rgba(87,158,87,1);
+    -moz-box-shadow: 6px 6px 5px 0px rgba(87,158,87,1);
+    box-shadow: 6px 6px 5px 0px rgba(87,158,87,1);
 }
 
 .StepCardLeft {
@@ -39,5 +42,8 @@
     bottom: 4px;
 }
 .StepCardChecked{
-    outline: 6px solid rgba(0, 255, 0, 0.5);
+}
+
+.StepCardCheckbox:checked{
+    background: lightgreen!important;
 }

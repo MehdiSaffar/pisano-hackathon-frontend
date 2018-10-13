@@ -32,6 +32,7 @@ class StepCard extends Component {
                     onChange={this.checkStepCard}
                     type="checkbox"
                     className={classes.StepCardCheckbox}/>
+                <span className={classes.StepCardCheckmark}></span>
             </div>
         )
     }
