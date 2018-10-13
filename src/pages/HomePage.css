@@ -7,8 +7,6 @@
 }
 .SearchForm {
     display: flex;
-
-
 }
 
 .SearchButton {
@@ -21,8 +19,8 @@
 }
 
 .SearchBar {
-    display :block;
-    margin:none;
+    display: block;
+    margin: none;
     outline: none;
     border: none;
     border-radius: 4px;
@@ -33,6 +31,13 @@
     margin: 0;
 }
 
-.Title {
+.SearchBarItem {
+    background-color: transparent;
+}
 
+.SearchBarItem .Highlighted {
+    background-color: "#eee";
+}
+
+.Title {
 }
