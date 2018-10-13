@@ -107,11 +107,6 @@ class AddDocumentPage extends Component {
 
     render() {
         const tree = this.getTreeView(this.steps, 0)
-        const mockItems = [
-            { id: "passport", name: "Passport" },
-            { id: "student_document", name: "Student document" },
-            { id: "birth_certificate", name: "Birth certificate" },
-        ]
 
         return (
             <div className={classes.AddDocumentPage}>
@@ -121,8 +116,8 @@ class AddDocumentPage extends Component {
                         items={this.documentStore.allExistingDocuments}
                         // items={mockItems}
                         shouldItemRender={(item, value) => {
-                            console.log("item.name", item.name)
-                            console.log("value", value)
+                            // console.log("item.name", item.name)
+                            // console.log("value", value)
 
                             const ret =
                                 item.name
@@ -134,7 +129,7 @@ class AddDocumentPage extends Component {
                         }}
                         getItemValue={item => item.name}
                         renderItem={item => {
-                            console.log("renderItem", item)
+                            // console.log("renderItem", item)
                             return (
                                 <div
                                     key={item.id}
