@@ -6,9 +6,6 @@ export default class Step extends React.Component {
         return (
             <div className={classes.StepContainer}>
                 <p>{this.props.children}</p>
-                {this.props.showAdd && (
-                    <button onClick={this.props.onAddClick}>+</button>
-                )}
             </div>
         )
     }
