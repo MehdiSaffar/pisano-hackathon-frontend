@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage/HomePage"
 import classes from './App.css'
 import { Switch, Route, Redirect } from "react-router"
 import DocumentPage from "./pages/DocumentPage/DocumentPage";
+import AddDocumentPage from "./pages/AddDocumentPage/AddDocumentPage";
 
 // const ic = Object.keys(icons).map(iconName => icons[iconName])
 // library.add(...ic)
@@ -20,6 +21,7 @@ class App extends Component {
         const routes = (
             <Switch>
                 <Route path="/document/:documentName" exact component={DocumentPage}/>
+                <Route path="/add" exact component={AddDocumentPage}/>
                 <Route path="/" exact component={HomePage}/>
             </Switch>
         )

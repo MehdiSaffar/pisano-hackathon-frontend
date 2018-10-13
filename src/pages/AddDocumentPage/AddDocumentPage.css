@@ -1,0 +1,12 @@
+/* .DocumentPage {
+    display:flex;
+} */
+
+.DependencyInputGroup {
+    display:flex;
+}
+
+.AddDependencyButton {
+    align-self: center;
+    height: 50%;
+}
