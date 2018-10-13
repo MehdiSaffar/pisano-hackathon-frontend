@@ -10,7 +10,7 @@ import { TreeView } from "./../../containers/UI/TreeView/TreeView"
 import uuidV1 from "uuid/v1"
 import ReactAutocomplete from "react-autocomplete"
 import Button from "./../../containers/UI/Form/Button/Button"
-import Step from "./Step"
+import Step from "../../components/Step/Step"
 
 // class Node {
 
@@ -151,6 +151,7 @@ class AddDocumentPage extends Component {
 
         return (
             <div className={classes.AddDocumentPage}>
+                <h1>Yeni Süreç Ekle</h1>
                 {tree}
                 {form}
             </div>

@@ -1,0 +1,22 @@
+.StepContainer{
+    border: 2px solid green;
+    position: relative;
+    height: 36px;
+}
+
+.StepContainer p{
+    margin: 4px 4px;
+}
+
+.StepContainer button{
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: rgb(0, 255, 0);
+    border: none;
+    height: 100%;
+    width: 36px;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+}

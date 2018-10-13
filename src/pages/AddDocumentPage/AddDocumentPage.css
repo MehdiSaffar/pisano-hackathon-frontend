@@ -2,6 +2,10 @@
     display:flex;
 } */
 
+.AddDocumentPage{
+    width: 80%;
+    margin: 20px 10% 20px 10%;
+}
 
 .AddDocumentPageForm{
     margin-top: 20px;
