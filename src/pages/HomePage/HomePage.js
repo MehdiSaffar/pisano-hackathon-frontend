@@ -53,14 +53,10 @@ class HomePage extends Component {
                         renderItem={(item, highlighted) => (
                             <div
                                 key={item.id}
-                                className={[
-                                    classes.SearchBarItem
-                                ]}
                             >
                                 {item.label}
                             </div>
                         )}
-                        inputProps={{className: classes.SearchBar}}
                         value={this.searchText}
                         onChange={this.onSearchTextChanged}
                         onSelect={(itemName) => this.searchText = itemName}

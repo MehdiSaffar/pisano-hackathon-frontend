@@ -16,6 +16,13 @@ import AddDocumentPage from "./pages/AddDocumentPage/AddDocumentPage";
 @inject("store")
 @observer
 class App extends Component {
+    @computed get documentStore() { return this.props.store.document}
+    componentDidMount() {
+        console.log("app did mount")
+        if(this.documentStore.allExistingDocuments.length === 0) {
+            this.documentStore.getAllExistingDocuments()
+        }
+    }
 
     render() {
         const routes = (
