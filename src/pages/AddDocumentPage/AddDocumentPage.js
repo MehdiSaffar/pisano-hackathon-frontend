@@ -111,7 +111,9 @@ class AddDocumentPage extends Component {
         return (
             <div className={classes.AddDocumentPage}>
                 {tree}
-                <form onSubmit={this.onSubmitForm}>
+                <form onSubmit={this.onSubmitForm}
+                    className={classes.AddDocumentPageForm}>
+                    <h3>Yeni Adım Ekle</h3>
                     <ReactAutocomplete
                         items={this.documentStore.allExistingDocuments}
                         // items={mockItems}

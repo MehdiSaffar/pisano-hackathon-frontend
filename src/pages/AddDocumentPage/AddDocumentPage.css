@@ -2,6 +2,12 @@
     display:flex;
 } */
 
+
+.AddDocumentPageForm{
+    margin-top: 20px;
+}
+
+
 .DependencyInputGroup {
     display:flex;
 }
