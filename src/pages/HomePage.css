@@ -1,7 +1,28 @@
-.SearchSection {
+.Container{
+    width: 100%;
+}
+
+.Header{
     width: 60%;
-    background-color: #ccc;
-    padding: 16px;
+    margin: 24px 20% 10px 20%;
+    text-align: center;
+}
+
+.Header img{
+}
+
+.Header h1{
+    font-size: 1.4em;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.SearchSection {
+    box-sizing: border-box;
+    width: 80%;
+    margin: 10px 10%;
+    background-color: rgb(206, 231, 255);
+    padding: 12px;
     border-radius: 12px;
 }
 .SearchForm{
@@ -27,8 +48,9 @@
 }
 
 .SearchBar {
+    box-sizing: border-box;
     display: block;
-    margin: none;
+    margin: 0;
     outline: none;
     border: none;
     border-radius: 4px;
@@ -36,17 +58,25 @@
     height: 2.4em;
     padding: 2px 4px;
     font-size: 1.2em;
-    margin: 0;
 }
 
 .SearchBarItem {
     background-color: transparent;
+    line-height: 1.2em;
+    padding: 8px 12px;
+    cursor: pointer
+}
+
+.SearchBarItem:hover {
+    background-color: rgba(206, 231, 255, 0.5);
 }
 
 .SearchBarItem .Highlighted {
-    background-color: "#eee";
+    background-color: #eee;
 }
 
 .Title {
     font-size: 1.1em;
+    color: #1e1e1e;
+    font-weight: 400;
 }
