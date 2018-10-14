@@ -6,4 +6,9 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    overflow: auto;
+}
+
+.DocumentPage button{
+    min-height: 46px;
 }
