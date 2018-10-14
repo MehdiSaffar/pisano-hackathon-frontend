@@ -43,6 +43,7 @@ class HomePage extends Component {
                     src={logo}
                     alt="Some logo"
                 />
+                <p className={classes.CatchPhrase}>Evrakişim, 112 binden fazla evrağının adresi</p>
             </div>
         )
 
