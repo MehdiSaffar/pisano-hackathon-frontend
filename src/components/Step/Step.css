@@ -1,0 +1,9 @@
+.StepContainer{
+    border: 2px solid green;
+    position: relative;
+    height: 36px;
+}
+
+.StepContainer p{
+    margin: 4px 4px;
+}
