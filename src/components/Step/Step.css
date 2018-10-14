@@ -1,11 +1,9 @@
 .StepContainer{
-    border: 2px solid green;
-    border-radius: 4px;
-    margin: 2px 0px;
     position: relative;
-    height: 36px;
-    display:flex;
-    background-color: greenyellow;
+    background-color: rgba(0, 255, 0, 0.5);
+    display: flex;
+    width: 100%;
+    box-shadow: 6px 6px 5px 0px rgba(87,158,87,1);
 }
 
 .StepContainer p{

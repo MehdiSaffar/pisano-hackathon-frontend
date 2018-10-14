@@ -5,6 +5,7 @@ import { observable, computed } from "mobx"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import classes from "./HomePage.css"
 import ReactAutocomplete from "react-autocomplete"
+import logo from "../../assets/evrakisim_logo.png";
 
 const mockItems = [
     { id: "passport", label: "Passport" },
@@ -39,10 +40,9 @@ class HomePage extends Component {
         const header = (
             <div className={classes.Header}>
                 <img
-                    src="https://via.placeholder.com/200x150"
+                    src={logo}
                     alt="Some logo"
                 />
-                <h1>Product Name</h1>
             </div>
         )
 

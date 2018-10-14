@@ -2,19 +2,67 @@
     display:flex;
 } */
 
-.AddDocumentPage{
-    width: 80%;
-    margin: 20px 10% 20px 10%;
+.PageContainer{
+    width: 90%;
+    margin: 20px 5% 20px 5%;
     padding: 20px;
+}
+
+.PageContainer h1{
+    text-align: center;
+}
+
+.PageContainer h2{
+    text-align: center;
+}
+
+.AddDocumentPage{
+    padding: 20px;
+    box-sizing: border-box;
     border-radius: 16px;
-    background-color: #eee;
+    background-color: #04f;
     box-shadow: 6px 6px 5px 0px #bbb;
 }
 
 .AddDocumentPageForm{
-    margin-top: 20px;
     display: flex;
     flex-direction: column;
+    margin: 20px 0;
+    padding: 20px;
+    padding-top: 24px;
+    padding-bottom: 60px;
+    border: 4px solid #300C72;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.AddDocumentPageForm h3{
+    font-weight: 400;
+    font-size: 1.4em;
+    margin-top: 0;
+    top: -20px;
+    padding: 4px 8px;
+    background-color: #04f;
+    position: absolute;
+    z-index: 10;
+    color: white;
+    font-weight: bold;
+}
+
+.AddDocumentPageForm button{
+    position: absolute;
+    right: -1px;
+    bottom: 0;
+    border: none;
+    background-color: #300C72;
+    width: 48px;
+    height: 48px;
+    font-size: 2em;
+    border-radius: 100% 0 0 0;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px 0 0 10px;
 }
 
 .DependencyInputGroup {
@@ -24,12 +72,27 @@
 .AddDependencyButton {
     align-self: center;
     height: 50%;
+    background-color: white!important;
 }
 
 .SearchItem {
     padding: 10px;
+    z-index: 100;
 }
 
  .Highlighted {
     background-color: #baded6;
 }
+
+ .SubmitButton{
+     position: absolute;
+     bottom: 12px;
+     right: calc((100% - 160px) / 2);
+     width: 160px;
+     height: 48px;
+     border: none;
+     background-color: #3fc529;
+     color: white;
+     font-weight: bold;
+     font-size: 1.2em;
+ }

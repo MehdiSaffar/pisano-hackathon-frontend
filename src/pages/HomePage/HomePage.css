@@ -4,7 +4,7 @@
 
 .Header{
     width: 60%;
-    margin: 24px 20% 10px 20%;
+    margin: 25vh 20% 10px 20%;
     text-align: center;
 }
 
@@ -20,8 +20,8 @@
 .SearchSection {
     box-sizing: border-box;
     width: 80%;
-    margin: 10px 10%;
-    background-color: rgb(206, 231, 255);
+    margin: 20px 10%;
+    background-color: #ee4;
     padding: 12px;
     border-radius: 12px;
 }
@@ -56,6 +56,7 @@
     background: transparent;
     font-size: 1.2em;
     cursor: pointer;
+    color: #4a4a4a;
 }
 
 .SearchBar {
@@ -90,4 +91,41 @@
     font-size: 1.1em;
     color: #1e1e1e;
     font-weight: 400;
+}
+
+@media screen and (min-width: 960px){
+    .SearchSection {
+        background: none;
+    }
+
+    .SearchForm>div>input{
+        border: 1px solid #b4b4b4;
+        box-sizing: border-box;
+        width: 100%;
+        padding: 0 6px;
+        height: 2em;
+        background: white;
+        font-size: 1.4em;
+        cursor: pointer;
+        border-radius: 4px;
+        -webkit-box-shadow: 2px 2px 15px 1px rgba(0,0,0,0.75);
+        -moz-box-shadow: 2px 2px 15px 1px rgba(0,0,0,0.75);
+        box-shadow: 2px 2px 15px 1px rgba(0,0,0,0.75);
+    }
+
+    .SearchForm>div>input:hover{
+        -webkit-box-shadow: 2px 4px 15px 1px rgba(0,0,0,0.75);
+        -moz-box-shadow: 2px 4px 15px 1px rgba(0,0,0,0.75);
+        box-shadow: 2px 4px 15px 1px rgba(0,0,0,0.75);
+    }
+
+
+
+    .SearchButton {
+        height: 100%;
+        padding: 0 12px;
+        font-size: 1.5em;
+        cursor: pointer;
+        color: #4a4a4a;
+    }
 }

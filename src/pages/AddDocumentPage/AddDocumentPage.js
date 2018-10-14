@@ -153,7 +153,6 @@ class AddDocumentPage extends Component {
         const title = <h3>Yeni Adım Ekle</h3>
         const name = (
             <div className={inputClasses.Input}>
-                <label className={inputClasses.Label}>Name: </label>
                 <ReactAutocomplete
                     items={this.documentStore.allExistingDocuments}
                     shouldItemRender={(item, value) => {
@@ -164,6 +163,8 @@ class AddDocumentPage extends Component {
                                     .indexOf(value.toLowerCase()) > -1
                             )
                     }}
+                    menuStyle={{background:"rgba(255, 255, 255, 1)", zIndex:10, position: "absolute", left: 0, top: 40}}
+                    wrapperStyle={{position: "relative"}}
                     getItemValue={item => item.name}
                     renderItem={(item, highlighted) => {
                         const cls = [classes.SearchItem]
@@ -179,7 +180,7 @@ class AddDocumentPage extends Component {
                     renderInput={props => (
                         <input
                             {...props}
-                            placeholder="Document name"
+                            placeholder="Döküman veya adım ismi"
                             className={inputClasses.InputElement}
                             // style={{ margin: "10px" }}
                         />
@@ -197,14 +198,13 @@ class AddDocumentPage extends Component {
         )
         const description = (
             <div className={inputClasses.Input}>
-                <label className={inputClasses.Label}>Description: </label>
                 <textarea
                     className={inputClasses.InputElement}
                     value={this.currentStep.description}
                     onChange={event => {
                         this.currentStep.description = event.target.value
                     }}
-                    placeholder="Document description"
+                    placeholder="Dökümanla veya adımla ilgili açıklama"
                 />
             </div>
         )
@@ -224,20 +224,20 @@ class AddDocumentPage extends Component {
         )
 
         const submit = (
-            <Button
+            <button
                 type="submit"
                 btnStyle={"Success"}
-                style={{ margin: "10px" }}
                 onClick={(e) => this.onSubmitForm(e)}
+                className={classes.SubmitButton}
             >
-                Submit
-            </Button>
+                Kaydet
+            </button>
         )
 
         const addStepButton = (
-            <Button onClick={this.onAddStepClick} style={{ margin: "10px" }}>
-                Add Step
-            </Button>
+            <button onClick={this.onAddStepClick}>
+                +
+            </button>
         )
         const form = (
             <form
@@ -250,16 +250,24 @@ class AddDocumentPage extends Component {
                 {hints}
                 <div className={classes.FormButtonGroup}>
                     {addStepButton}
-                    {submit}
                 </div>
             </form>
         )
 
         return (
-            <div className={classes.AddDocumentPage}>
-                <h2>Steps: </h2>
-                {tree}
-                {form}
+            <div className={classes.PageContainer}>
+                <h1>Süreci Tasarla</h1>
+
+                <div className={classes.AddDocumentPage}>
+                    {form}
+                </div>
+
+                <div className={classes.FormContainer}>
+                    <h2>Adımlar: </h2>
+                    {tree}
+                </div>
+
+                {submit}
             </div>
         )
     }

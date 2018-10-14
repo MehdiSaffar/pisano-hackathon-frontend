@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react"
+import logo from "./assets/evrakisim_logo2.png";
 // import { library } from "@fortawesome/fontawesome-svg-core"
 // import { icons } from "./icons"
 import { withRouter } from "react-router"
@@ -31,9 +32,16 @@ class App extends Component {
             </Switch>
         )
         return (
-
             <div className={classes.App}>
+                <div className={classes.Header}>
+                    <a href="/">
+                        <img src={logo} alt="Evrakişim"/>
+                    </a>
+                </div>
                 {routes}
+                <div className={classes.Footer}>
+
+                </div>
             </div>
         )
     }
