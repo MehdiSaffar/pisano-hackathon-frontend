@@ -14,8 +14,10 @@ class StepView extends Component {
         return this.props.store.document
     }
 
+    @observable
+    checkCount = 0
+
     componentDidMount() {
-        assert(this.props.match.params.documentId !== undefined)
         this.documentStore.getDocument(this.props.match.params.documentId)
     }
 
@@ -30,7 +32,9 @@ class StepView extends Component {
                 <span className={classes.RequiredDocument}>
                     {this.documentStore.currentDocument.name} 
                 </span>
-                {" almak için almanız gereken belgeler"}
+                {" almak için almanız gereken belgeler " } 
+                <br/>
+                {(this.documentStore.documents.length - this.checkCount) + " adım kaldı!"}
             </h1>
         )
         const cards = (
@@ -47,6 +51,7 @@ class StepView extends Component {
                             description={doc.description}
                             institution={doc.institution}
                             hints={doc.hints}
+                            onCheck={(val) => {this.checkCount += val}}
                         />
                     )
                 })}

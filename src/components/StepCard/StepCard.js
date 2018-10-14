@@ -38,6 +38,13 @@ class StepCard extends Component {
     checkStepCard = () => {
         let checked_local = this.checked
         this.checked = !checked_local
+
+        if(this.checked) {
+            this.props.onCheck(1)
+        } else {
+            this.props.onCheck(-1)
+        }
+
     }
 
     render() {
@@ -47,7 +54,7 @@ class StepCard extends Component {
         }
 
         const title = (
-            <h1 className={classes.StepCardTitle}>{this.props.title}</h1>
+            <h1 onClick={(e) => this.props.onClick(e)} className={classes.StepCardTitle}>{this.props.title}</h1>
         )
         const description = <p>{this.props.description}</p>
         const hints = <p>{this.props.hints}</p>
@@ -72,18 +79,10 @@ class StepCard extends Component {
             <div className={class_arr.join(" ")}>
                 <div
                     className={classes.StepCardLeft}
-                    onClick={e => {
-                        e.stopPropagation()
-                        this.props.onClick(e)
-                    }}
                 >
                     {this.props.rank}
                 </div>
                 <div
-                    onClick={e => {
-                        e.stopPropagation()
-                        this.props.onClick(e)
-                    }}
                     className={classes.StepCardRight}
                 >
                     {title}
