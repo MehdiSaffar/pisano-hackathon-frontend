@@ -43,7 +43,10 @@ class AddDocumentPage extends Component {
         localId: uuidV1(), // used as key for react
         name: null,
         description: "",
-        institution: "",
+        institution: {
+            name: "",
+            description: "",
+        },
         hints: "",
         children: [],
     }
@@ -53,7 +56,10 @@ class AddDocumentPage extends Component {
         name: "",
         filled: false,
         description: "",
-        institution: "",
+        institution: {
+            name: "",
+            description: "",
+        },
         hints: "",
         localId: uuidV1(),
         children: [],
@@ -67,7 +73,10 @@ class AddDocumentPage extends Component {
             name: "",
             filled: false,
             description: "",
-            institution: "",
+            institution: {
+                name: "",
+                description: "",
+            },
             hints: "",
             localId: uuidV1(),
             children: [],
@@ -77,9 +86,11 @@ class AddDocumentPage extends Component {
         newStep.name = ""
         newStep.filled = false
         newStep.id = null
-        newStep.institution = ""
         newStep.description = ""
-        newStep.institution = ""
+        newStep.institution = {
+            name: "",
+            description: "",
+        }
         newStep.localId = uuidV1()
         newStep.children = []
         parent.children.push(newStep)
@@ -103,13 +114,22 @@ class AddDocumentPage extends Component {
         this.current.filled = true
         this.current.id = this.currentStep.id || null
         this.current.localId = this.currentStep.localId
-        this.current.children = []
+        this.current.children = this.currentStep.children || []
+        this.current.hints = this.currentStep.hints || ""
+        this.current.description = this.currentStep.description || ""
+        this.current.institution = {
+            name: this.currentStep.institution.name || "",
+            description: this.currentStep.institution.description || "",
+        }
 
         this.currentStep = {
             name: "",
             filled: false,
             description: "",
-            institution: "",
+            institution: {
+                name: "",
+                description: "",
+            },
             hints: "",
             localId: uuidV1(),
             children: [],
@@ -174,8 +194,12 @@ class AddDocumentPage extends Component {
 
         data.name = step.name
         data.description = step.description || ""
-        data.institution = step.institution || ""
+        data.institution = {
+            name: step.institution.name || "",
+            description: step.institution.description || "",
+        }
         data.dependencies = step.children.map(el => this.getData(el)) || []
+        console.log('data in getData', data)
         return data
     }
 
@@ -184,6 +208,7 @@ class AddDocumentPage extends Component {
         const title = <h3>Yeni Adım Ekle</h3>
         const name = (
             <div className={inputClasses.Input}>
+                <label className={inputClasses.Label}>Belge adı: </label>
                 <ReactAutocomplete
                     items={this.documentStore.allExistingDocuments}
                     shouldItemRender={(item, value) => {
@@ -236,6 +261,8 @@ class AddDocumentPage extends Component {
         )
         const description = (
             <div className={inputClasses.Input}>
+
+                <label className={inputClasses.Label}>Açıklama: </label>
                 <textarea
                     className={inputClasses.InputElement}
                     value={this.currentStep.description}
@@ -263,13 +290,24 @@ class AddDocumentPage extends Component {
 
         const institution = (
             <div className={inputClasses.Input}>
+                <label className={inputClasses.Label}>Kurum adı: </label>
+                <input
+                    className={inputClasses.InputElement}
+                    value={this.currentStep.institution.name}
+                    onChange={event => {
+                        this.currentStep.institution.name = event.target.value
+                    }}
+                    placeholder="Bu belgeyi veren kurumun adı"
+                />
+                <label className={inputClasses.Label}>Kurum açıklaması: </label>
                 <textarea
                     className={inputClasses.InputElement}
-                    value={this.currentStep.institution}
+                    value={this.currentStep.institution.description}
                     onChange={event => {
-                        this.currentStep.institution = event.target.value
+                        this.currentStep.institution.description =
+                            event.target.value
                     }}
-                    placeholder="Bu belgeyi veren kurum"
+                    placeholder="Bu belgeyi veren kurumun açıklaması"
                 />
             </div>
         )
@@ -311,24 +349,23 @@ class AddDocumentPage extends Component {
                         </div>
                     </Fragment>
                 ) : (
-                    <p className={classes.FormInformation}>Add step down there</p>
+                    <p className={classes.FormInformation}>
+                        Add step down there
+                    </p>
                 )}
             </form>
         )
 
         return (
             <div className={classes.PageContainer}>
-                <h1>Süreci Tasarla</h1>
-
                 <div className={classes.FlexContainer}>
-                    <div className={classes.AddDocumentPage}>
-                        {form}
-                    </div>
-
                     <div className={classes.FormContainer}>
                         <h2>Adımlar: </h2>
                         {tree}
                     </div>
+
+                    <h1>Süreci Tasarla</h1>
+                    <div className={classes.AddDocumentPage}>{form}</div>
                 </div>
 
                 {submit}
