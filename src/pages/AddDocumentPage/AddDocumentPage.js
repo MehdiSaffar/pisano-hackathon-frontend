@@ -37,20 +37,37 @@ class AddDocumentPage extends Component {
     steps = {
         id: null, // real id on database
         localId: uuidV1(), // used as key for react
+        name: null,
+        children: [],
+    }
+
+    @observable
+    currentStep = {
         name: "no name",
+        description: "no description",
+        localId: uuidV1(),
         children: [],
     }
 
     onAddStepClick = () => {
-        this.steps.children.push({
-            id: null,
-            localId: uuidV1(),
+        if (this.steps.name === null) {
+            this.steps.name = this.currentStep.name
+            this.steps.id = this.currentStep.id || null
+            this.steps.localId = this.currentStep.localId
+        } else {
+            const newStep = {}
+            newStep.name = this.currentStep.name
+            newStep.id = this.currentStep.id || null
+            newStep.localId = this.currentStep.localId
+            newStep.children = []
+            this.steps.children.push(newStep)
+        }
+        this.currentStep = {
             name: "no name",
             description: "no description",
+            localId: uuidV1(),
             children: [],
-        })
-        this.currentStep = this.steps.children[this.steps.children.length - 1]
-        // console.log("onAddStepClick", this.currentStep)
+        }
     }
 
     onSubmitForm = event => {
@@ -91,9 +108,6 @@ class AddDocumentPage extends Component {
         data.dependencies = step.children.map(el => this.getData(el)) || []
         return data
     }
-
-    @observable
-    currentStep = this.steps
 
     render() {
         const tree = this.getTreeView(this.steps, 0)
@@ -156,14 +170,10 @@ class AddDocumentPage extends Component {
 
         return (
             <div className={classes.AddDocumentPage}>
-                <h1>Yeni Süreç Ekle</h1>
                 {this.steps.name === null ? (
                     <p>Please enter a new step!</p>
                 ) : (
-                    <div>
-                        <h2>Adımlar</h2>
-                        {tree}
-                    </div>
+                    tree
                 )}
                 {form}
             </div>
