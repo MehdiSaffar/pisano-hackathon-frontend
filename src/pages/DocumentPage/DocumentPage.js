@@ -21,7 +21,7 @@ export class DocumentPage extends Component {
                 <Button onClick={this.onToggleViewButtonClicked}>
                     Görünümü Değiştir
                 </Button>
-                {this.view === "graph" ? <GraphView /> : <StepView />}
+                {this.view === "list" ? <GraphView /> : <StepView />}
             </div>
         )
     }

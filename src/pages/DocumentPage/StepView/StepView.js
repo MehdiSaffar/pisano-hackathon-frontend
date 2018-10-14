@@ -5,6 +5,7 @@ import { observable, computed } from "mobx"
 import classes from "./StepView.css"
 import StepCard from "../../../components/StepCard/StepCard"
 import assert from "assert"
+import Spinner from "./../../../containers/UI/Spinner/Spinner"
 
 @inject("store")
 @observer
@@ -28,13 +29,15 @@ class StepView extends Component {
 
     render() {
         const title = (
-            <h1>
+            <h1 className={classes.Title}>
                 <span className={classes.RequiredDocument}>
-                    {this.documentStore.currentDocument.name} 
+                    {this.documentStore.currentDocument.name}
                 </span>
-                {" almak için almanız gereken belgeler " } 
-                <br/>
-                {(this.documentStore.documents.length - this.checkCount) + " adım kaldı!"}
+                {" almak için almanız gereken belgeler "}
+                <br />
+                {this.documentStore.documents.length -
+                    this.checkCount +
+                    " adım kaldı!"}
             </h1>
         )
         const cards = (
@@ -51,18 +54,22 @@ class StepView extends Component {
                             description={doc.description}
                             institution={doc.institution}
                             hints={doc.hints}
-                            onCheck={(val) => {this.checkCount += val}}
+                            onCheck={val => {
+                                this.checkCount += val
+                            }}
                         />
                     )
                 })}
             </div>
         )
 
-        return (
+        return this.documentStore.documents.length > 0 ? (
             <div className={classes.StepView}>
                 {title}
                 {cards}
             </div>
+        ) : (
+            <Spinner />
         )
     }
 }

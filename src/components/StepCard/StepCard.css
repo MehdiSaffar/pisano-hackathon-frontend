@@ -28,7 +28,7 @@
 
 .StepCardTitle {
     margin-top: 0;
-
+    font-family: 'Dosis';
 }
 
 .StepCardRight {
@@ -47,8 +47,10 @@
 
 .Drop {
     outline: none;
-    border: none;
-    background: transparent;
+    border: 4px transparent solid;
+    border-radius: 4px;
+    background: #eee;
+    margin: 10px;
     box-sizing: border-box;
     transition: all 0.1s;
 }
@@ -57,6 +59,7 @@
     border: 2px solid rgb(18, 109, 23);
     background-color: rgb(52, 219, 80);
     box-sizing: border-box;
+    margin: 10px;
     border-radius: 4px;
     transition: all 0.1s;
 }

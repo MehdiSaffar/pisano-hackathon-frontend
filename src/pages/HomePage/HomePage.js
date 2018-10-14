@@ -5,7 +5,8 @@ import { observable, computed } from "mobx"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import classes from "./HomePage.css"
 import ReactAutocomplete from "react-autocomplete"
-import logo from "../../assets/evrakisim_logo.png";
+import logo from "../../assets/evrakisim_logo.png"
+import { Link } from "react-router-dom"
 
 const mockItems = [
     { id: "passport", label: "Passport" },
@@ -32,18 +33,17 @@ class HomePage extends Component {
     }
 
     onSearchSubmit = event => {
-        if(event) event.preventDefault()
+        if (event) event.preventDefault()
         this.props.history.push("/document/" + this.searchId)
     }
 
     render() {
         const header = (
             <div className={classes.Header}>
-                <img
-                    src={logo}
-                    alt="Some logo"
-                />
-                <p className={classes.CatchPhrase}>Evrakişim, 112 binden fazla evrağının adresi</p>
+                <img src={logo} alt="Some logo" />
+                <p className={classes.CatchPhrase}>
+                    Evrakişim, 112 binden fazla evrağının adresi
+                </p>
             </div>
         )
 
@@ -55,12 +55,19 @@ class HomePage extends Component {
         const searchInput = (
             <ReactAutocomplete
                 items={this.documentStore.allExistingDocuments}
-                shouldItemRender = {(item, value) => {
-                        if(item.name){
-                            return item.name.toLowerCase().indexOf(value.toLowerCase()) > -1;
-                        }
+                shouldItemRender={(item, value) => {
+                    if (item.name) {
+                        return (
+                            item.name
+                                .toLowerCase()
+                                .indexOf(value.toLowerCase()) > -1
+                        )
                     }
-                }
+                }}
+                // menuStyle={{
+                //     maxHeight:"300px",
+                //     overflow:'auto'
+                // }}
                 getItemValue={item => item.name}
                 renderItem={(item, highlighted) => (
                     <div key={item.id} className={[classes.SearchBarItem]}>
@@ -100,6 +107,11 @@ class HomePage extends Component {
             <div className={classes.Container}>
                 {header}
                 {searchSection}
+                <div style={{margin: 'auto', textAlign:"center"}}>
+                    <Link to="/document/add">
+                        Katkı sağlamak ister misiniz?
+                    </Link>
+                </div>
             </div>
         )
     }

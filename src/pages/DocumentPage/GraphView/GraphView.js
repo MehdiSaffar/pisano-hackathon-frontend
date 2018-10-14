@@ -37,7 +37,7 @@ class GraphView extends Component {
             link: {
                 highlightColor: "lightblue",
             },
-            minZoom: 3,
+            minZoom: 2,
             maxZoom: 8,
         }
 
@@ -73,14 +73,14 @@ class GraphView extends Component {
         console.log(data)
         return (
             <div className={classes.GraphView}>
-                {this.documentStore.documents.length > 0 && (
+                {this.documentStore.documents.length > 0 ? (
                     <Graph
                     ref={this.hey}
                         id="graph-id" // id is mandatory, if no id is defined rd3g will throw an error
                         data={data}
                         config={myConfig}
                     />
-                )}
+                ) : <p>Has no dependencies?</p>}
             </div>
         )
     }
