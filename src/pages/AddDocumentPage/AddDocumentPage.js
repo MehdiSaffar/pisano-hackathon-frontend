@@ -311,7 +311,7 @@ class AddDocumentPage extends Component {
                         </div>
                     </Fragment>
                 ) : (
-                    <p className={classes.FormInformation}>Add step down there</p>
+                    <p className={classes.FormInformation}>Aşağıdaki adımlara yeni bir adım ekle</p>
                 )}
             </form>
         )

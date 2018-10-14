@@ -5,21 +5,35 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export default class Step extends React.Component {
     colors = [
         {
-            bg: "#fefbd8",
+            bg: "#CD5C5C",
+            c: "white",
+        },
+        {
+            bg: "#F08080",
             c: "black",
         },
         {
-            bg: "#618685",
+            bg: "#FA8072",
+            c: "black",
+        },
+        {
+            bg: "#E9967A",
+            c: "black",
+        },
+        {
+            bg: "#FFA07A",
+            c: "black",
+        },
+        {
+            bg: "#DC143C",
             c: "white",
         },
         {
-            bg: "#36486b",
+            bg: "#B22222",
             c: "white",
-        },
-        {
-            bg: "#4040a1",
-            c: "white",
-        },
+        }
+
+
 
     ]
         
