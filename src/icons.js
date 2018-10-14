@@ -9,4 +9,5 @@ export const icons = {
     lock: fontAwesome.faLock,
     search: fontAwesome.faSearch,
     document: fontAwesome.faFile,
+    check: fontAwesome.faCheck,
 }

@@ -2,7 +2,8 @@
     height: 100vh;
     display:flex;
     flex-direction: column;
-
+    background-color: #fff;
+    box-shadow: #ccc 0px 0px 29px 0px;
 }
 
 .Header{
@@ -15,6 +16,12 @@
     height: 32px;
     margin-top: 4px;
     cursor: pointer;
+}
+
+.Footer {
+    text-align: center;
+    font-size: 1.2em;
+    margin: 10px 0px;
 }
 
 @media screen and (min-width: 960px){

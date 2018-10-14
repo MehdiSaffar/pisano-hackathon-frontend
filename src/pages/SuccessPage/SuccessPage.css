@@ -6,3 +6,11 @@
     border-radius: 40px;
     text-align: center;
 }
+.SuccessCheck {
+    margin: auto;
+    color: green;
+    /* width: fit-content;
+    height: fit-content; */
+    font-size: 8em;
+    
+}

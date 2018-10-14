@@ -142,8 +142,8 @@ class AddDocumentPage extends Component {
         const formatted = this.getData(this.steps)
         console.log(formatted)
         try {
-            const response = await axios.post("/api/nodes", formatted)
-            console.log("posted successfully", response)
+            await axios.post("/api/nodes", formatted)
+            this.props.history.push('/document/success')
         } catch (err) {
             console.log(err)
             throw err

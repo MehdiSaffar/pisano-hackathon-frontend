@@ -88,7 +88,7 @@
      /* position: absolute;
      bottom: 12px;
      right: calc((100% - 160px) / 2); */
-     margin: auto;
+     margin: 10px auto;
      display: block;
      width: 160px;
      height: 48px;

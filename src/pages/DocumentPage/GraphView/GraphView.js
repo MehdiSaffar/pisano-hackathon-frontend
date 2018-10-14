@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react"
+import React, { Component, Fragment, createRef } from "react"
 import { withRouter } from "react-router"
 import { observer, inject } from "mobx-react"
 import { observable, computed, runInAction } from "mobx"
@@ -17,12 +17,6 @@ class GraphView extends Component {
         this.documentStore.getDocument(this.props.match.params.documentId)
     }
 
-    getScreenSize= () => {
-        return {
-            height: window.innerHeight - 144,
-            width: window.innerWidth - 8
-        }
-    }
     render() {
         // graph payload (with minimalist structure)
         const data = {
@@ -36,13 +30,15 @@ class GraphView extends Component {
             nodeHighlightBehavior: true,
             node: {
                 color: "lightgreen",
-                size: 120,
+                size: 200,
                 highlightStrokeColor: "blue",
                 labelProperty: "label",
             },
             link: {
                 highlightColor: "lightblue",
             },
+            minZoom: 3,
+            maxZoom: 8,
         }
 
         for (const doc of this.documentStore.documents) {
@@ -59,7 +55,7 @@ class GraphView extends Component {
             ) {
                 newNode.symbolType = "square"
                 newNode.color = "red"
-                newNode.size = 300
+                newNode.size = 400
             } else {
                 newNode.symbolType = "circle"
             }
@@ -79,6 +75,7 @@ class GraphView extends Component {
             <div className={classes.GraphView}>
                 {this.documentStore.documents.length > 0 && (
                     <Graph
+                    ref={this.hey}
                         id="graph-id" // id is mandatory, if no id is defined rd3g will throw an error
                         data={data}
                         config={myConfig}

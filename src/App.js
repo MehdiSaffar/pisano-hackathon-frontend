@@ -35,14 +35,14 @@ class App extends Component {
         )
         return (
             <div className={classes.App}>
-                <div className={classes.Header}>
+                {this.props.location.pathname !== "/" && <div className={classes.Header}>
                     <a href="/">
                         <img src={logo} alt="Evrakişim"/>
                     </a>
-                </div>
+                </div>}
                 {routes}
                 <div className={classes.Footer}>
-
+                    Exbibyte 2018 - All rights reserved
                 </div>
             </div>
         )

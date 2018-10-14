@@ -30,7 +30,7 @@ class StepView extends Component {
                 <span className={classes.RequiredDocument}>
                     {this.documentStore.currentDocument.name} 
                 </span>
-                almak için almanız gereken belgeler
+                {" almak için almanız gereken belgeler"}
             </h1>
         )
         const cards = (

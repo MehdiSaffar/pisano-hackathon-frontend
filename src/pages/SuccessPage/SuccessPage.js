@@ -3,6 +3,7 @@ import classes from './SuccessPage.css'
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { withRouter } from 'react-router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 @observer
 class SuccessPage extends Component {
@@ -14,7 +15,7 @@ class SuccessPage extends Component {
       this.timeLeft--;
         if(this.timeLeft <= 0) {
           clearInterval(i)
-          this.props.history.push('/a')
+          // this.props.history.push('/a')
         }
     }, 1000);
   }
@@ -22,6 +23,9 @@ class SuccessPage extends Component {
   render() {
     return (
       <div className={classes.SuccessSection}>
+      <div className={classes.SuccessCheck}>
+        <FontAwesomeIcon icon="check"/>
+      </div>
         <h1>
           Your document has been successfully saved!
         </h1>
