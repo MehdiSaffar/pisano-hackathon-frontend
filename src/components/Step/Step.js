@@ -3,13 +3,35 @@ import classes from "./Step.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default class Step extends React.Component {
-    colorGenerator = () => {
-        let randInt = Math.floor(Math.random() * 255) + 1; // returns a random integer from 1 to 100
-        return "rgb(0," + randInt +",0)";
-    };
+    colors = [
+        {
+            bg: "#fefbd8",
+            c: "black",
+        },
+        {
+            bg: "#618685",
+            c: "white",
+        },
+        {
+            bg: "#36486b",
+            c: "white",
+        },
+        {
+            bg: "#4040a1",
+            c: "white",
+        },
+
+    ]
+        
+    
+    colorGenerator() {
+        const index = Math.floor(Math.random() * this.colors.length)
+        return this.colors[index]
+    }
+    randomColor = this.colorGenerator()
     render() {
         return (
-            <div className={classes.StepContainer}>
+            <div style={{backgroundColor: this.randomColor.bg, color: this.randomColor.c}}className={classes.StepContainer}>
                 <p>{this.props.children}</p>
                 {this.props.showAdd &&<button className={classes.AddStepButton} onClick={this.props.onAddClick}>
                     <FontAwesomeIcon icon="plus" fixedWidth />

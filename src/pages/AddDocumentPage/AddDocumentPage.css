@@ -85,9 +85,11 @@
 }
 
  .SubmitButton{
-     position: absolute;
+     /* position: absolute;
      bottom: 12px;
-     right: calc((100% - 160px) / 2);
+     right: calc((100% - 160px) / 2); */
+     margin: auto;
+     display: block;
      width: 160px;
      height: 48px;
      border: none;
