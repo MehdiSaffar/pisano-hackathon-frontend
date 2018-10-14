@@ -29,8 +29,8 @@
 
 .Label {
     font-weight: bold;
-    display: inline-block;
-    margin-bottom: 2px;
-    margin-left: 4px;
+    display: block;
+    /* margin-bottom: 2px;
+    margin-left: 4px; */
     box-sizing: border-box;
 }

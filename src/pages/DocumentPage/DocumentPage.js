@@ -3,6 +3,7 @@ import { observable } from "mobx"
 import StepView from "./StepView/StepView"
 import GraphView from "./GraphView/GraphView"
 import { inject, observer} from 'mobx-react';
+import Button from './../../containers/UI/Form/Button/Button';
 
 @inject('store')
 @observer
@@ -15,10 +16,10 @@ export class DocumentPage extends Component {
 
     render() {
         return (
-            <div>
-                <button onClick={this.onToggleViewButtonClicked}>
+            <div style={{textAlign: 'center', margin: "12px"}}>
+                <Button onClick={this.onToggleViewButtonClicked}>
                     Toggle View
-                </button>
+                </Button>
                 {this.view === "graph" ? <GraphView /> : <StepView />}
             </div>
         )

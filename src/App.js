@@ -10,8 +10,6 @@ import { Switch, Route, Redirect } from "react-router"
 import DocumentPage from "./pages/DocumentPage/DocumentPage";
 import AddDocumentPage from "./pages/AddDocumentPage/AddDocumentPage";
 
-// const ic = Object.keys(icons).map(iconName => icons[iconName])
-// library.add(...ic)
 
 @inject("store")
 @observer

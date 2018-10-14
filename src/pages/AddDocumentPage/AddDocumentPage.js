@@ -36,19 +36,44 @@ class AddDocumentPage extends Component {
         children: [],
     }
 
+    onAddSubStep = (parent) => {
+        this.currentStep = {
+            name: "",
+            description: "",
+            localId: uuidV1(),
+            children: [],
+        }
+        console.log("Setting parent to ")
+        console.log(parent.name);
+        
+        this.parent = parent;
+    }
     onAddStepClick = () => {
-        if (this.steps.name === null) {
+        // if (this.steps.name === null) {
+        //     this.steps.name = this.currentStep.name
+        //     this.steps.id = this.currentStep.id || null
+        //     this.steps.localId = this.currentStep.localId
+        // } else {
+        //     const newStep = {}
+        //     newStep.name = this.currentStep.name
+        //     newStep.id = this.currentStep.id || null
+        //     newStep.localId = this.currentStep.localId
+        //     newStep.children = []
+        //     this.steps.children.push(newStep)
+        // }
+        const newStep = {}
+        newStep.name = this.currentStep.name
+        newStep.id = this.currentStep.id || null
+        newStep.localId = this.currentStep.localId
+        newStep.children = []
+        if(this.parent) {
+            this.parent.children.push(newStep)
+        } else {
             this.steps.name = this.currentStep.name
             this.steps.id = this.currentStep.id || null
             this.steps.localId = this.currentStep.localId
-        } else {
-            const newStep = {}
-            newStep.name = this.currentStep.name
-            newStep.id = this.currentStep.id || null
-            newStep.localId = this.currentStep.localId
-            newStep.children = []
-            this.steps.children.push(newStep)
         }
+
         this.currentStep = {
             name: "",
             description: "",
@@ -62,21 +87,22 @@ class AddDocumentPage extends Component {
         this.getData(this.steps)
     }
 
-    getTreeView = (step, level) => {
+    getTreeView = (step, level, index) => {
         if (step === undefined) return null
+        index = index === undefined ? 0 : index
         return (
             <TreeView
                 key={step.localId}
                 label={
                     <Step
                         showAdd={level === 0}
-                        onAddClick={() => this.onAddStepClick()}
+                        onAddClick={() => this.onAddSubStep(step)}
                     >
-                        {step.name}
+                        {`${index + 1}. ${step.name}`}
                     </Step>
                 }
             >
-                {step.children.map(el => this.getTreeView(el, level + 1))}
+                {step.children.map((el, index) => this.getTreeView(el, level + 1, index))}
             </TreeView>
         )
     }
@@ -100,47 +126,72 @@ class AddDocumentPage extends Component {
         const tree = this.getTreeView(this.steps, 0)
         const title = <h3>Yeni Adım Ekle</h3>
         const name = (
-            <ReactAutocomplete
-                items={this.documentStore.allExistingDocuments}
-                shouldItemRender={(item, value) => {
-                    if(item.name) return item.name.toLowerCase().indexOf(value.toLowerCase()) > -1
-                }
-                }
-                getItemValue={item => item.name}
-                renderItem={item => {
-                    return <div key={item.id}>{item.name}</div>
-                }}
-                renderInput={props => (
-                    <input
-                        {...props}
-                        placeholder="Document name"
-                        className={inputClasses.InputElement}
-                    />
-                )}
-                value={this.currentStep.name}
-                onChange={event => {
-                    this.currentStep.name = event.target.value
-                }}
-                onSelect={(_, item) => {
-                    // console.log("onselect", item)
-                    this.currentStep.id = item.id
-                    this.currentStep.name = item.name
-                }}
-            />
+            <div className={inputClasses.Input}>
+                <label className={inputClasses.Label}>Name: </label>
+                <ReactAutocomplete
+                    items={this.documentStore.allExistingDocuments}
+                    shouldItemRender={(item, value) => {
+                        if (item.name)
+                            return (
+                                item.name
+                                    .toLowerCase()
+                                    .indexOf(value.toLowerCase()) > -1
+                            )
+                    }}
+                    getItemValue={item => item.name}
+                    renderItem={(item, highlighted) => {
+                        const cls = [classes.SearchItem]
+                        if(highlighted) {
+                            cls.push(classes.Highlighted)
+                        }
+                        return <div key={item.id} className={cls.join(' ')}>{item.name}</div>
+                    }}
+                    renderInput={props => (
+                        <input
+                            {...props}
+                            placeholder="Document name"
+                            className={inputClasses.InputElement}
+                            // style={{ margin: "10px" }}
+                        />
+                    )}
+                    value={this.currentStep.name}
+                    onChange={event => {
+                        this.currentStep.name = event.target.value
+                    }}
+                    onSelect={(_, item) => {
+                        this.currentStep.id = item.id
+                        this.currentStep.name = item.name
+                    }}
+                />
+            </div>
         )
         const description = (
-            <textarea
-                className={inputClasses.InputElement}
-                value={this.currentStep.description}
-                onChange={event => {
-                    this.currentStep.description = event.target.value
-                }}
-                placeholder="Document description"
-            />
+            <div className={inputClasses.Input}>
+                <label className={inputClasses.Label}>Description: </label>
+                <textarea
+                    className={inputClasses.InputElement}
+                    value={this.currentStep.description}
+                    onChange={event => {
+                        this.currentStep.description = event.target.value
+                    }}
+                    placeholder="Document description"
+                />
+            </div>
         )
-        const submit = <Button type="submit">Submit</Button>
+        const submit = (
+            <Button
+                type="submit"
+                btnStyle={"Success"}
+                style={{ margin: "10px" }}
+            >
+                Submit
+            </Button>
+        )
+
         const addStepButton = (
-            <Button onClick={this.onAddStepClick}>Add Step</Button>
+            <Button onClick={this.onAddStepClick} style={{ margin: "10px" }}>
+                Add Step
+            </Button>
         )
         const form = (
             <form
@@ -150,13 +201,16 @@ class AddDocumentPage extends Component {
                 {title}
                 {name}
                 {description}
-                {addStepButton}
-                {submit}
+                <div className={classes.FormButtonGroup}>
+                    {addStepButton}
+                    {submit}
+                </div>
             </form>
         )
 
         return (
             <div className={classes.AddDocumentPage}>
+                <h2>Steps: </h2>
                 {this.steps.name === null ? (
                     <p>Please enter a new step!</p>
                 ) : (

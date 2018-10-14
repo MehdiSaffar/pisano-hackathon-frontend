@@ -1,9 +1,22 @@
 .StepContainer{
     border: 2px solid green;
+    border-radius: 4px;
+    margin: 2px 0px;
     position: relative;
     height: 36px;
+    display:flex;
 }
 
 .StepContainer p{
     margin: 4px 4px;
+}
+
+.AddStepButton {
+    outline: none;
+    border: none;
+    padding: 0;
+    margin-left:auto;
+    align-self: center;
+    flex: 0 0 auto;
+    font-size: 1.4em;
 }

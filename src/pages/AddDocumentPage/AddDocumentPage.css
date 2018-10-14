@@ -5,12 +5,17 @@
 .AddDocumentPage{
     width: 80%;
     margin: 20px 10% 20px 10%;
+    padding: 20px;
+    border-radius: 16px;
+    background-color: #eee;
+    box-shadow: 6px 6px 5px 0px #bbb;
 }
 
 .AddDocumentPageForm{
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
 }
-
 
 .DependencyInputGroup {
     display:flex;
@@ -19,4 +24,12 @@
 .AddDependencyButton {
     align-self: center;
     height: 50%;
+}
+
+.SearchItem {
+    padding: 10px;
+}
+
+ .Highlighted {
+    background-color: #baded6;
 }
