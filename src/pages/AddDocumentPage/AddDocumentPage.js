@@ -159,9 +159,11 @@ class AddDocumentPage extends Component {
                 {this.steps.name === null ? (
                     <p>Please enter a new step!</p>
                 ) : (
-                    tree
+                    <div>
+                        <h2>Adımlar</h2>
+                        {tree}
+                    </div>
                 )}
-                {tree}
                 {form}
             </div>
         )
