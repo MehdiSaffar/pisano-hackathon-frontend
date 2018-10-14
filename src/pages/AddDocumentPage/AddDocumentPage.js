@@ -320,11 +320,15 @@ class AddDocumentPage extends Component {
             <div className={classes.PageContainer}>
                 <h1>Süreci Tasarla</h1>
 
-                <div className={classes.AddDocumentPage}>{form}</div>
+                <div className={classes.FlexContainer}>
+                    <div className={classes.AddDocumentPage}>
+                        {form}
+                    </div>
 
-                <div className={classes.FormContainer}>
-                    <h2>Adımlar: </h2>
-                    {tree}
+                    <div className={classes.FormContainer}>
+                        <h2>Adımlar: </h2>
+                        {tree}
+                    </div>
                 </div>
 
                 {submit}
