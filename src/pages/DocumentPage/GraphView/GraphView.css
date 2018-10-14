@@ -1,10 +1,20 @@
 .GraphView {
-   /* border: black solid 1px;
-    flex: 1 0 auto;
-    width: 100%;
-    height: fit-content;
+    border: black solid 1px;
     overflow: hidden;
     box-sizing: border-box;
-    flex: 1;*/
+    flex: 1;
+    /* width: 100%; */
+    /* height: fit-content; */
+}
 
+ :global #graph-id-graph-wrapper {
+    width: 100% !important;
+    height: 100% !important;
+    border-color: red !important;
+}
+
+:global #graph-id-graph-wrapper > svg {
+    width: 100% !important;
+    height: 100% !important;
+    border-color: orange !important;
 }

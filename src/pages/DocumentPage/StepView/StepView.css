@@ -1,3 +1,13 @@
 .StepCardList{
     margin-top: 40px;
+    margin: auto;
+}
+
+.StepView {
+    margin: auto;
+}
+
+.RequiredDocument {
+    background-color: blueviolet;
+    border-radius: 30px;
 }

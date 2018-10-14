@@ -29,6 +29,7 @@ class AddDocumentPage extends Component {
         localId: uuidV1(), // used as key for react
         name: null,
         description: "",
+        institution: "",
         hints: "",
         children: [],
     }
@@ -38,6 +39,7 @@ class AddDocumentPage extends Component {
         name: "",
         filled: false,
         description: "",
+        institution: "",
         hints: "",
         localId: uuidV1(),
         children: [],
@@ -50,6 +52,7 @@ class AddDocumentPage extends Component {
             name: "",
             filled: false,
             description: "",
+            institution: "",
             hints: "",
             localId: uuidV1(),
             children: [],
@@ -59,6 +62,9 @@ class AddDocumentPage extends Component {
         newStep.name = ""
         newStep.filled = false
         newStep.id = null
+        newStep.institution = ""
+        newStep.description = ""
+        newStep.institution = ""
         newStep.localId = uuidV1()
         newStep.children = []
         parent.children.push(newStep)
@@ -88,6 +94,7 @@ class AddDocumentPage extends Component {
             name: "",
             filled: false,
             description: "",
+            institution: "",
             hints: "",
             localId: uuidV1(),
             children: [],
@@ -105,7 +112,6 @@ class AddDocumentPage extends Component {
             console.log(err)
             throw err
         }
-        
     }
 
     getTreeView = (parent, step, level, index) => {
@@ -144,6 +150,7 @@ class AddDocumentPage extends Component {
 
         data.name = step.name
         data.description = step.description || ""
+        data.institution = step.institution || ""
         data.dependencies = step.children.map(el => this.getData(el)) || []
         return data
     }
@@ -211,14 +218,27 @@ class AddDocumentPage extends Component {
 
         const hints = (
             <div className={inputClasses.Input}>
-                <label className={inputClasses.Label}>Hints: </label>
+                <label className={inputClasses.Label}>İpucu: </label>
                 <textarea
                     className={inputClasses.InputElement}
                     value={this.currentStep.hints}
                     onChange={event => {
                         this.currentStep.hints = event.target.value
                     }}
-                    placeholder="Hints ?"
+                    placeholder="İpucu"
+                />
+            </div>
+        )
+
+        const institution = (
+            <div className={inputClasses.Input}>
+                <textarea
+                    className={inputClasses.InputElement}
+                    value={this.currentStep.institution}
+                    onChange={event => {
+                        this.currentStep.institution = event.target.value
+                    }}
+                    placeholder="Bu belgeyi veren kurum"
                 />
             </div>
         )
@@ -247,6 +267,7 @@ class AddDocumentPage extends Component {
                 {title}
                 {name}
                 {description}
+                {institution}
                 {hints}
                 <div className={classes.FormButtonGroup}>
                     {addStepButton}
