@@ -43,10 +43,7 @@ class AddDocumentPage extends Component {
         localId: uuidV1(), // used as key for react
         name: null,
         description: "",
-        institution: {
-            name: "",
-            description: "",
-        },
+        institution: "",
         hints: "",
         children: [],
     }
@@ -56,10 +53,7 @@ class AddDocumentPage extends Component {
         name: "",
         filled: false,
         description: "",
-        institution: {
-            name: "",
-            description: "",
-        },
+        institution: "",
         hints: "",
         localId: uuidV1(),
         children: [],
@@ -73,10 +67,7 @@ class AddDocumentPage extends Component {
             name: "",
             filled: false,
             description: "",
-            institution: {
-                name: "",
-                description: "",
-            },
+            institution: "",
             hints: "",
             localId: uuidV1(),
             children: [],
@@ -86,11 +77,9 @@ class AddDocumentPage extends Component {
         newStep.name = ""
         newStep.filled = false
         newStep.id = null
+        newStep.institution = ""
         newStep.description = ""
-        newStep.institution = {
-            name: "",
-            description: "",
-        }
+        newStep.institution = ""
         newStep.localId = uuidV1()
         newStep.children = []
         parent.children.push(newStep)
@@ -114,13 +103,7 @@ class AddDocumentPage extends Component {
         this.current.filled = true
         this.current.id = this.currentStep.id || null
         this.current.localId = this.currentStep.localId
-        this.current.children = this.currentStep.children || []
-        this.current.hints = this.currentStep.hints || ""
-        this.current.description = this.currentStep.description || ""
-        this.current.institution = {
-            name: this.currentStep.institution.name || "",
-            description: this.currentStep.institution.description || "",
-        }
+        this.current.children = []
 
         this.currentStep = {
             name: "",
@@ -169,7 +152,7 @@ class AddDocumentPage extends Component {
                             `${index + 1}. ${step.name}`
                         ) : (
                             <span>
-                                Lütfen, bu adımı yukarıdaki formdan doldur
+                                Lütfen, bu adımı aşağıdaki formdan doldur
                             </span>
                         )}
                     </Step>
@@ -350,7 +333,7 @@ class AddDocumentPage extends Component {
                     </Fragment>
                 ) : (
                     <p className={classes.FormInformation}>
-                        Add step down there
+                        <p className={classes.FormInformation}>Yukarıdaki adımlara yeni bir adım ekle</p>
                     </p>
                 )}
             </form>
