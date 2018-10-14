@@ -18,7 +18,7 @@ export class DocumentPage extends Component {
         return (
             <div style={{textAlign: 'center', margin: "12px"}}>
                 <Button onClick={this.onToggleViewButtonClicked}>
-                    Toggle View
+                    Görünümü Değiştir
                 </Button>
                 {this.view === "graph" ? <GraphView /> : <StepView />}
             </div>

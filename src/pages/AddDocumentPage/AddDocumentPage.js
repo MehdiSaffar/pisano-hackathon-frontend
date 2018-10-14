@@ -116,7 +116,7 @@ class AddDocumentPage extends Component {
                         showAdd={step.filled}
                         onAddClick={() => this.onAddSubStep(step)}
                     >
-                        {step.filled ? `${index + 1}. ${step.name}` : 'Please describe this step in the form below'}
+                        {step.filled ? `${index + 1}. ${step.name}` : <span>Lütfen, bu adımı yukarıdaki formdan doldur</span>}
                     </Step>
                 }
             >

@@ -1,8 +1,10 @@
 .StepContainer{
     position: relative;
-    background-color: rgba(0, 255, 0, 0.5);
+    background-color: rgba(0, 255, 0, 0.8);
     display: flex;
     width: 100%;
+    padding: 4px;
+    margin: 8px 0;
     box-shadow: 6px 6px 5px 0px rgba(87,158,87,1);
 }
 
@@ -10,13 +12,21 @@
     margin: 4px 4px;
 }
 
+.StepContainer span{
+    color: white;
+    font-weight: bold;
+}
+
+
 .AddStepButton {
     outline: none;
     border: none;
     background-color: transparent;
-    padding: 0;
-    margin-left:auto;
-    align-self: center;
-    flex: 0 0 auto;
-    font-size: 1.4em;
+    padding: 0 4px 0 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 1.2em;
+    height: 100%;
+    cursor: pointer;
 }
