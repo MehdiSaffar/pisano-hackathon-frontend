@@ -7,9 +7,9 @@ export default class Step extends React.Component {
         return (
             <div className={classes.StepContainer}>
                 <p>{this.props.children}</p>
-                <button className={classes.AddStepButton} onClick={this.props.onAddClick}>
+                {this.props.showAdd &&<button className={classes.AddStepButton} onClick={this.props.onAddClick}>
                     <FontAwesomeIcon icon="plus" fixedWidth />
-                </button>
+                </button> }
             </div>
         )
     }

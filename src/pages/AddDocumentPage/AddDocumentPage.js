@@ -23,6 +23,7 @@ class AddDocumentPage extends Component {
     @observable
     steps = {
         id: null, // real id on database
+        filled: false,
         localId: uuidV1(), // used as key for react
         name: null,
         children: [],
@@ -31,22 +32,34 @@ class AddDocumentPage extends Component {
     @observable
     currentStep = {
         name: "",
+        filled: false,
         description: "",
         localId: uuidV1(),
         children: [],
     }
 
-    onAddSubStep = (parent) => {
+    @observable current = this.steps
+
+    onAddSubStep = parent => {
         this.currentStep = {
             name: "",
+            filled: false,
             description: "",
             localId: uuidV1(),
             children: [],
         }
-        console.log("Setting parent to ")
-        console.log(parent.name);
         
-        this.parent = parent;
+        const newStep = {}
+        newStep.name = ""
+        newStep.filled = false
+        newStep.id = null
+        newStep.localId = uuidV1()
+        newStep.children = []
+        parent.children.push(newStep)
+
+        console.log("Setting parent to " + parent.name)
+
+        this.current = parent.children[parent.children.length - 1]
     }
     onAddStepClick = () => {
         // if (this.steps.name === null) {
@@ -61,21 +74,26 @@ class AddDocumentPage extends Component {
         //     newStep.children = []
         //     this.steps.children.push(newStep)
         // }
-        const newStep = {}
-        newStep.name = this.currentStep.name
-        newStep.id = this.currentStep.id || null
-        newStep.localId = this.currentStep.localId
-        newStep.children = []
-        if(this.parent) {
-            this.parent.children.push(newStep)
-        } else {
-            this.steps.name = this.currentStep.name
-            this.steps.id = this.currentStep.id || null
-            this.steps.localId = this.currentStep.localId
-        }
+        console.log('onAddStepClick')
+        
+        this.current.name = this.currentStep.name
+        console.log("Changing current to " + this.current.name);
+        this.current.filled = true
+        this.current.id = this.currentStep.id || null
+        this.current.localId = this.currentStep.localId
+        this.current.children = []
+        // if (this.current) {
+        //     this.parent.children.push(newStep)
+        // } else {
+        //     this.steps.name = this.currentStep.name
+        //     this.steps.filled = true
+        //     this.steps.id = this.currentStep.id || null
+        //     this.steps.localId = this.currentStep.localId
+        // }
 
         this.currentStep = {
             name: "",
+            filled: false,
             description: "",
             localId: uuidV1(),
             children: [],
@@ -95,14 +113,16 @@ class AddDocumentPage extends Component {
                 key={step.localId}
                 label={
                     <Step
-                        showAdd={level === 0}
+                        showAdd={step.filled}
                         onAddClick={() => this.onAddSubStep(step)}
                     >
-                        {`${index + 1}. ${step.name}`}
+                        {step.filled ? `${index + 1}. ${step.name}` : 'Please describe this step in the form below'}
                     </Step>
                 }
             >
-                {step.children.map((el, index) => this.getTreeView(el, level + 1, index))}
+                {step.children.map((el, index) =>
+                    this.getTreeView(el, level + 1, index)
+                )}
             </TreeView>
         )
     }
@@ -141,10 +161,14 @@ class AddDocumentPage extends Component {
                     getItemValue={item => item.name}
                     renderItem={(item, highlighted) => {
                         const cls = [classes.SearchItem]
-                        if(highlighted) {
+                        if (highlighted) {
                             cls.push(classes.Highlighted)
                         }
-                        return <div key={item.id} className={cls.join(' ')}>{item.name}</div>
+                        return (
+                            <div key={item.id} className={cls.join(" ")}>
+                                {item.name}
+                            </div>
+                        )
                     }}
                     renderInput={props => (
                         <input
@@ -211,11 +235,7 @@ class AddDocumentPage extends Component {
         return (
             <div className={classes.AddDocumentPage}>
                 <h2>Steps: </h2>
-                {this.steps.name === null ? (
-                    <p>Please enter a new step!</p>
-                ) : (
-                    tree
-                )}
+                {tree}
                 {form}
             </div>
         )

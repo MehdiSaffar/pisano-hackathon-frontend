@@ -5,6 +5,7 @@
     position: relative;
     height: 36px;
     display:flex;
+    background-color: greenyellow;
 }
 
 .StepContainer p{
@@ -14,6 +15,7 @@
 .AddStepButton {
     outline: none;
     border: none;
+    background-color: transparent;
     padding: 0;
     margin-left:auto;
     align-self: center;
