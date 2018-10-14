@@ -43,7 +43,10 @@ class AddDocumentPage extends Component {
         localId: uuidV1(), // used as key for react
         name: null,
         description: "",
-        institution: "",
+        institution: {
+            name: "",
+            description: "",
+        },
         hints: "",
         children: [],
     }
@@ -53,7 +56,10 @@ class AddDocumentPage extends Component {
         name: "",
         filled: false,
         description: "",
-        institution: "",
+        institution: {
+            name: "",
+            description: "",
+        },
         hints: "",
         localId: uuidV1(),
         children: [],
@@ -67,7 +73,10 @@ class AddDocumentPage extends Component {
             name: "",
             filled: false,
             description: "",
-            institution: "",
+            institution: {
+                name: "",
+                description: "",
+            },
             hints: "",
             localId: uuidV1(),
             children: [],
@@ -79,7 +88,10 @@ class AddDocumentPage extends Component {
         newStep.id = null
         newStep.institution = ""
         newStep.description = ""
-        newStep.institution = ""
+        newStep.institution = {
+            name: "",
+            description: "",
+        }
         newStep.localId = uuidV1()
         newStep.children = []
         parent.children.push(newStep)
@@ -103,7 +115,13 @@ class AddDocumentPage extends Component {
         this.current.filled = true
         this.current.id = this.currentStep.id || null
         this.current.localId = this.currentStep.localId
-        this.current.children = []
+        this.current.children = this.currentStep.children || []
+        this.current.hints = this.currentStep.hints || ""
+        this.current.description = this.currentStep.description || ""
+        this.current.institution = {
+            name: this.currentStep.institution.name || "",
+            description: this.currentStep.institution.description || "",
+        }
 
         this.currentStep = {
             name: "",
