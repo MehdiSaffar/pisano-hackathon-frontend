@@ -4,6 +4,7 @@ import { observer, inject } from "mobx-react"
 import { observable, computed } from "mobx"
 import classes from "./StepView.css"
 import StepCard from "../../../components/StepCard/StepCard"
+import assert from 'assert'
 
 @inject("store")
 @observer
@@ -14,11 +15,12 @@ class StepView extends Component {
     }
 
     componentDidMount() {
+        assert(this.props.match.params.documentId !== undefined)
         this.documentStore.getDocument(this.props.match.params.documentId)
     }
 
-    onStepCardClicked = (id, name) => {
-        this.documentStore.getDocument(id)
+    onStepCardClicked = (id) => {
+        assert(id !== undefined)
         this.props.history.push('/document/' + id)
     }
 
@@ -31,10 +33,12 @@ class StepView extends Component {
         const cards = (
             <div className={classes.StepCardList}>
                 {this.documentStore.documents.map((doc, index) => {
+                    console.log(JSON.parse(JSON.stringify(doc)));
+                    
                     return (
                         <StepCard
                             key={doc.id}
-                            onClick={() => this.onStepCardClicked(doc.id, doc.name)}
+                            onClick={() => this.onStepCardClicked(doc.id)}
                             title={doc.name}
                             rank={index + 1}
                             description={doc.description}
