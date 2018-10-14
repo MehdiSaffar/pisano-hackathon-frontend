@@ -12,19 +12,6 @@ import ReactAutocomplete from "react-autocomplete"
 import Button from "./../../containers/UI/Form/Button/Button"
 import Step from "../../components/Step/Step"
 
-// class Node {
-
-//     constructor({id, localId, name, children})  {
-//         this.id = id
-//         this.localId = localId
-//         this.name = name
-//         this.children = children.map(el => new Node(el))
-//     }
-//     @observable id= null
-//     @observable localId= null
-//     @observable name= "no name"
-//     @observable children= asFlat([])
-// }
 @inject("store")
 @observer
 class AddDocumentPage extends Component {
@@ -43,8 +30,8 @@ class AddDocumentPage extends Component {
 
     @observable
     currentStep = {
-        name: "no name",
-        description: "no description",
+        name: "",
+        description: "",
         localId: uuidV1(),
         children: [],
     }
@@ -63,8 +50,8 @@ class AddDocumentPage extends Component {
             this.steps.children.push(newStep)
         }
         this.currentStep = {
-            name: "no name",
-            description: "no description",
+            name: "",
+            description: "",
             localId: uuidV1(),
             children: [],
         }
@@ -135,7 +122,7 @@ class AddDocumentPage extends Component {
                     this.currentStep.name = event.target.value
                 }}
                 onSelect={(_, item) => {
-                    console.log("onselect", item)
+                    // console.log("onselect", item)
                     this.currentStep.id = item.id
                     this.currentStep.name = item.name
                 }}
