@@ -92,3 +92,40 @@
     color: #1e1e1e;
     font-weight: 400;
 }
+
+@media screen and (min-width: 960px){
+    .SearchSection {
+        background: none;
+    }
+
+    .SearchForm>div>input{
+        border: 1px solid #b4b4b4;
+        box-sizing: border-box;
+        width: 100%;
+        padding: 0 6px;
+        height: 2em;
+        background: white;
+        font-size: 1.4em;
+        cursor: pointer;
+        border-radius: 4px;
+        -webkit-box-shadow: 2px 2px 15px 1px rgba(0,0,0,0.75);
+        -moz-box-shadow: 2px 2px 15px 1px rgba(0,0,0,0.75);
+        box-shadow: 2px 2px 15px 1px rgba(0,0,0,0.75);
+    }
+
+    .SearchForm>div>input:hover{
+        -webkit-box-shadow: 2px 4px 15px 1px rgba(0,0,0,0.75);
+        -moz-box-shadow: 2px 4px 15px 1px rgba(0,0,0,0.75);
+        box-shadow: 2px 4px 15px 1px rgba(0,0,0,0.75);
+    }
+
+
+
+    .SearchButton {
+        height: 100%;
+        padding: 0 12px;
+        font-size: 1.5em;
+        cursor: pointer;
+        color: #4a4a4a;
+    }
+}
