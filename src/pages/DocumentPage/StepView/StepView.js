@@ -36,7 +36,7 @@ class StepView extends Component {
         const cards = (
             <div className={classes.StepCardList}>
                 {this.documentStore.documents.map((doc, index) => {
-                    console.log(JSON.parse(JSON.stringify(doc)))
+                    // console.log(JSON.parse(JSON.stringify(doc)))
 
                     return (
                         <StepCard
@@ -45,6 +45,8 @@ class StepView extends Component {
                             title={doc.name}
                             rank={index + 1}
                             description={doc.description}
+                            institution={doc.institution}
+                            hints={doc.hints}
                         />
                     )
                 })}

@@ -10,7 +10,7 @@ import classes from './DocumentPage.css'
 @observer
 export class DocumentPage extends Component {
     @observable
-    view = "graph"
+    view = "list"
     onToggleViewButtonClicked = () => {
         this.view = this.view === "graph" ? "list" : "graph"
     }

@@ -10,4 +10,6 @@ export const icons = {
     search: fontAwesome.faSearch,
     document: fontAwesome.faFile,
     check: fontAwesome.faCheck,
+    caretDown: fontAwesome.faCaretDown,
+    caretUp: fontAwesome.faCaretUp,
 }
