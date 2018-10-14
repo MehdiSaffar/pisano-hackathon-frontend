@@ -1,0 +1,8 @@
+.SuccessSection {
+    margin: auto;
+    width: 70%;
+    background-color: #eee;
+    border-color: green;
+    border-radius: 40px;
+    text-align: center;
+}

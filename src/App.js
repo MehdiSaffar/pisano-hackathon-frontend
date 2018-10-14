@@ -10,6 +10,7 @@ import classes from './App.css'
 import { Switch, Route, Redirect } from "react-router"
 import DocumentPage from "./pages/DocumentPage/DocumentPage";
 import AddDocumentPage from "./pages/AddDocumentPage/AddDocumentPage";
+import SuccessPage from './pages/SuccessPage/SuccessPage';
 
 
 @inject("store")
@@ -26,9 +27,10 @@ class App extends Component {
     render() {
         const routes = (
             <Switch>
+                <Route path="/document/success" exact component={SuccessPage}/>
+                <Route path="/document/add" exact component={AddDocumentPage}/>
                 <Route path="/document/:documentId" exact component={DocumentPage}/>
-                <Route path="/add" exact component={AddDocumentPage}/>
-                <Route path="/" exact component={HomePage}/>
+                <Route path="/" component={HomePage}/>
             </Switch>
         )
         return (

@@ -109,7 +109,10 @@ class AddDocumentPage extends Component {
             name: "",
             filled: false,
             description: "",
-            institution: "",
+            institution: {
+                name: "",
+                description: "",
+            },
             hints: "",
             localId: uuidV1(),
             children: [],
@@ -149,7 +152,7 @@ class AddDocumentPage extends Component {
                             `${index + 1}. ${step.name}`
                         ) : (
                             <span>
-                                Lütfen, bu adımı yukarıdaki formdan doldur
+                                Lütfen, bu adımı aşağıdaki formdan doldur
                             </span>
                         )}
                     </Step>
@@ -174,8 +177,12 @@ class AddDocumentPage extends Component {
 
         data.name = step.name
         data.description = step.description || ""
-        data.institution = step.institution || ""
+        data.institution = {
+            name: step.institution.name || "",
+            description: step.institution.description || "",
+        }
         data.dependencies = step.children.map(el => this.getData(el)) || []
+        console.log('data in getData', data)
         return data
     }
 
@@ -184,6 +191,7 @@ class AddDocumentPage extends Component {
         const title = <h3>Yeni Adım Ekle</h3>
         const name = (
             <div className={inputClasses.Input}>
+                <label className={inputClasses.Label}>Belge adı: </label>
                 <ReactAutocomplete
                     items={this.documentStore.allExistingDocuments}
                     shouldItemRender={(item, value) => {
@@ -236,6 +244,8 @@ class AddDocumentPage extends Component {
         )
         const description = (
             <div className={inputClasses.Input}>
+
+                <label className={inputClasses.Label}>Açıklama: </label>
                 <textarea
                     className={inputClasses.InputElement}
                     value={this.currentStep.description}
@@ -263,13 +273,24 @@ class AddDocumentPage extends Component {
 
         const institution = (
             <div className={inputClasses.Input}>
+                <label className={inputClasses.Label}>Kurum adı: </label>
+                <input
+                    className={inputClasses.InputElement}
+                    value={this.currentStep.institution.name}
+                    onChange={event => {
+                        this.currentStep.institution.name = event.target.value
+                    }}
+                    placeholder="Bu belgeyi veren kurumun adı"
+                />
+                <label className={inputClasses.Label}>Kurum açıklaması: </label>
                 <textarea
                     className={inputClasses.InputElement}
-                    value={this.currentStep.institution}
+                    value={this.currentStep.institution.description}
                     onChange={event => {
-                        this.currentStep.institution = event.target.value
+                        this.currentStep.institution.description =
+                            event.target.value
                     }}
-                    placeholder="Bu belgeyi veren kurum"
+                    placeholder="Bu belgeyi veren kurumun açıklaması"
                 />
             </div>
         )
@@ -311,24 +332,23 @@ class AddDocumentPage extends Component {
                         </div>
                     </Fragment>
                 ) : (
-                    <p className={classes.FormInformation}>Aşağıdaki adımlara yeni bir adım ekle</p>
+                    <p className={classes.FormInformation}>
+                        <p className={classes.FormInformation}>Yukarıdaki adımlara yeni bir adım ekle</p>
+                    </p>
                 )}
             </form>
         )
 
         return (
             <div className={classes.PageContainer}>
-                <h1>Süreci Tasarla</h1>
-
                 <div className={classes.FlexContainer}>
-                    <div className={classes.AddDocumentPage}>
-                        {form}
-                    </div>
-
                     <div className={classes.FormContainer}>
                         <h2>Adımlar: </h2>
                         {tree}
                     </div>
+
+                    <h1>Süreci Tasarla</h1>
+                    <div className={classes.AddDocumentPage}>{form}</div>
                 </div>
 
                 {submit}
