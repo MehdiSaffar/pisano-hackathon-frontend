@@ -34,6 +34,9 @@ class App extends Component {
 
             <div className={classes.App}>
                 {routes}
+                <div className={classes.Footer}>
+
+                </div>
             </div>
         )
     }
