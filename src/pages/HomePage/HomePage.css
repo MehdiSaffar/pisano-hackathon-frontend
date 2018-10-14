@@ -128,4 +128,7 @@
         cursor: pointer;
         color: #4a4a4a;
     }
+    .Title{
+        font-size: 1.3em;
+    }
 }
