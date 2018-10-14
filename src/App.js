@@ -27,7 +27,7 @@ class App extends Component {
     render() {
         const routes = (
             <Switch>
-                <Route path="/document/:documentName" exact component={DocumentPage}/>
+                <Route path="/document/:documentId" exact component={DocumentPage}/>
                 <Route path="/add" exact component={AddDocumentPage}/>
                 <Route path="/" exact component={HomePage}/>
             </Switch>

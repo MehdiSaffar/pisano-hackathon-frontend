@@ -31,7 +31,7 @@ class HomePage extends Component {
     }
 
     onSearchSubmit = event => {
-        event.preventDefault()
+        if(event) event.preventDefault()
         this.props.history.push("/document/" + this.searchId)
     }
 
@@ -68,6 +68,7 @@ class HomePage extends Component {
                 onSelect={(_, item) => {
                     this.searchText = item.name
                     this.searchId = item.id
+                    this.onSearchSubmit()
                 }}
             />
         )

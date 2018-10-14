@@ -1,56 +1,28 @@
-import React, { Component, Fragment } from "react"
-import { withRouter } from "react-router"
-import { observer, inject } from "mobx-react"
-import { observable, computed } from "mobx"
-import classes from "./DocumentPage.css"
-import StepCard from "./../../components/StepCard/StepCard"
+import React, { Component } from "react"
+import { observable } from "mobx"
+import StepView from "./StepView/StepView"
+import GraphView from "./GraphView/GraphView"
+import { inject, observer} from 'mobx-react';
 
-@inject("store")
+@inject('store')
 @observer
-class DocumentPage extends Component {
-    @computed
-    get documentStore() {
-        return this.props.store.document
-    }
-
-    componentDidMount() {
-        this.documentStore.getDocument(this.props.match.params.documentName)
-    }
-
-    onStepCardClicked = (id, name) => {
-        this.documentStore.getDocument(id)
-        this.props.history.push('/document/' + name)
+export class DocumentPage extends Component {
+    @observable
+    view = "graph"
+    onToggleViewButtonClicked = () => {
+        this.view = this.view === "graph" ? "list" : "graph"
     }
 
     render() {
-        const title = (
-            <h1>
-                {this.documentStore.currentDocument.name} almak için almanız gereken belgeler
-            </h1>
-        )
-        const cards = (
-            <div className={classes.StepCardList}>
-                {this.documentStore.documents.map((doc, index) => {
-                    return (
-                        <StepCard
-                            key={doc.id}
-                            onClick={() => this.onStepCardClicked(doc.id, doc.name)}
-                            title={doc.name}
-                            rank={index + 1}
-                            description={doc.description}
-                        />
-                    )
-                })}
-            </div>
-        )
-
         return (
-            <div className={classes.DocumentPage}>
-                {title} 
-                {cards}
+            <div>
+                <button onClick={this.onToggleViewButtonClicked}>
+                    Toggle View
+                </button>
+                {this.view === "graph" ? <GraphView /> : <StepView />}
             </div>
         )
     }
 }
 
-export default withRouter(DocumentPage)
+export default DocumentPage

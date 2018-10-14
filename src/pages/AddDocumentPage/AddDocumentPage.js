@@ -115,8 +115,9 @@ class AddDocumentPage extends Component {
         const name = (
             <ReactAutocomplete
                 items={this.documentStore.allExistingDocuments}
-                shouldItemRender={(item, value) =>
-                    item.name.toLowerCase().indexOf(value.toLowerCase()) > -1
+                shouldItemRender={(item, value) => {
+                    if(item.name) return item.name.toLowerCase().indexOf(value.toLowerCase()) > -1
+                }
                 }
                 getItemValue={item => item.name}
                 renderItem={item => {
