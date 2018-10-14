@@ -14,6 +14,9 @@ export default class Step extends React.Component {
                 {this.props.showAdd &&<button className={classes.AddStepButton} onClick={this.props.onAddClick}>
                     <FontAwesomeIcon icon="plus" fixedWidth />
                 </button> }
+                {this.props.showRemove &&<button className={classes.RemoveStepButton} onClick={this.props.onRemoveClick}>
+                    <FontAwesomeIcon icon="minus" fixedWidth />
+                </button> }
             </div>
         )
     }

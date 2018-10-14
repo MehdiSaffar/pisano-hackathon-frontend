@@ -30,3 +30,14 @@
     height: 100%;
     cursor: pointer;
 }
+.RemoveStepButton {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    margin-left:auto;
+    align-self: center;
+    flex: 0 0 auto;
+    font-size: 1.4em;
+}
+

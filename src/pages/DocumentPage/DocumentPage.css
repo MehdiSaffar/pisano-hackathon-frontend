@@ -1,0 +1,8 @@
+.DocumentPage {
+    text-align: center;
+    padding: 12px;
+    height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}

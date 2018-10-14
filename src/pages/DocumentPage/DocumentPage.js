@@ -4,6 +4,7 @@ import StepView from "./StepView/StepView"
 import GraphView from "./GraphView/GraphView"
 import { inject, observer} from 'mobx-react';
 import Button from './../../containers/UI/Form/Button/Button';
+import classes from './DocumentPage.css'
 
 @inject('store')
 @observer
@@ -16,7 +17,7 @@ export class DocumentPage extends Component {
 
     render() {
         return (
-            <div style={{textAlign: 'center', margin: "12px"}}>
+            <div className={classes.DocumentPage}>
                 <Button onClick={this.onToggleViewButtonClicked}>
                     Görünümü Değiştir
                 </Button>
