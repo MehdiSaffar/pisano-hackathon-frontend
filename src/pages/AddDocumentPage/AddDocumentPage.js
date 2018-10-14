@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react"
 import { withRouter } from "react-router"
 import { observer, inject } from "mobx-react"
 import { observable, computed, autorun, action } from "mobx"
-import assert from 'assert'
+import assert from "assert"
 // import icons from "../../icons"
 
 import classes from "./AddDocumentPage.css"
@@ -12,11 +12,25 @@ import uuidV1 from "uuid/v1"
 import ReactAutocomplete from "react-autocomplete"
 import Button from "./../../containers/UI/Form/Button/Button"
 import Step from "../../components/Step/Step"
-import axios from './../../mobx/axios';
+import axios from "./../../mobx/axios"
 
 @inject("store")
 @observer
 class AddDocumentPage extends Component {
+    @computed
+    get show() {
+        return this.currentStep.id === null || this.currentStep.id === undefined
+    }
+    @computed
+    get valid() {
+        if (this.currentStep.name.trim() === "") return false
+        return true
+    }
+
+    @computed
+    get canUseForm() {
+        return this.current !== null
+    }
     @computed
     get documentStore() {
         return this.props.store.document
@@ -45,7 +59,8 @@ class AddDocumentPage extends Component {
         children: [],
     }
 
-    @observable current = this.steps
+    @observable
+    current = this.steps
 
     onAddSubStep = parent => {
         this.currentStep = {
@@ -57,7 +72,7 @@ class AddDocumentPage extends Component {
             localId: uuidV1(),
             children: [],
         }
-        
+
         const newStep = {}
         newStep.name = ""
         newStep.filled = false
@@ -75,16 +90,16 @@ class AddDocumentPage extends Component {
     }
 
     onRemoveSubStep = (parent, index) => {
-        console.log('onRemoveSubStep');
-        
+        console.log("onRemoveSubStep")
+
         parent.children.splice(index, 1)
     }
 
     onAddStepClick = () => {
-       console.log('onAddStepClick')
-        
+        console.log("onAddStepClick")
+
         this.current.name = this.currentStep.name
-        console.log("Changing current to " + this.current.name);
+        console.log("Changing current to " + this.current.name)
         this.current.filled = true
         this.current.id = this.currentStep.id || null
         this.current.localId = this.currentStep.localId
@@ -99,16 +114,17 @@ class AddDocumentPage extends Component {
             localId: uuidV1(),
             children: [],
         }
+        this.current = null
     }
 
     onSubmitForm = async event => {
         event.preventDefault()
         const formatted = this.getData(this.steps)
-        console.log(formatted);
+        console.log(formatted)
         try {
             const response = await axios.post("/api/nodes", formatted)
             console.log("posted successfully", response)
-        } catch(err) {
+        } catch (err) {
             console.log(err)
             throw err
         }
@@ -125,9 +141,17 @@ class AddDocumentPage extends Component {
                         showAdd={step.filled}
                         showRemove={level > 0}
                         onAddClick={() => this.onAddSubStep(step)}
-                        onRemoveClick={() => this.onRemoveSubStep(parent, index)}
+                        onRemoveClick={() =>
+                            this.onRemoveSubStep(parent, index)
+                        }
                     >
-                        {step.filled ? `${index + 1}. ${step.name}` : <span>Lütfen, bu adımı yukarıdaki formdan doldur</span>}
+                        {step.filled ? (
+                            `${index + 1}. ${step.name}`
+                        ) : (
+                            <span>
+                                Lütfen, bu adımı yukarıdaki formdan doldur
+                            </span>
+                        )}
                     </Step>
                 }
             >
@@ -170,8 +194,14 @@ class AddDocumentPage extends Component {
                                     .indexOf(value.toLowerCase()) > -1
                             )
                     }}
-                    menuStyle={{background:"rgba(255, 255, 255, 1)", zIndex:10, position: "absolute", left: 0, top: 40}}
-                    wrapperStyle={{position: "relative"}}
+                    menuStyle={{
+                        background: "rgba(255, 255, 255, 1)",
+                        zIndex: 10,
+                        position: "absolute",
+                        left: 0,
+                        top: 40,
+                    }}
+                    wrapperStyle={{ position: "relative" }}
                     getItemValue={item => item.name}
                     renderItem={(item, highlighted) => {
                         const cls = [classes.SearchItem]
@@ -199,6 +229,7 @@ class AddDocumentPage extends Component {
                     onSelect={(_, item) => {
                         this.currentStep.id = item.id
                         this.currentStep.name = item.name
+                        this.onAddStepClick()
                     }}
                 />
             </div>
@@ -246,8 +277,8 @@ class AddDocumentPage extends Component {
         const submit = (
             <button
                 type="submit"
-                btnStyle={"Success"}
-                onClick={(e) => this.onSubmitForm(e)}
+                btnStyle="Success"
+                onClick={e => this.onSubmitForm(e)}
                 className={classes.SubmitButton}
             >
                 Kaydet
@@ -255,23 +286,33 @@ class AddDocumentPage extends Component {
         )
 
         const addStepButton = (
-            <button onClick={this.onAddStepClick}>
+            <button onClick={this.onAddStepClick} disabled={!this.valid}>
                 +
             </button>
         )
         const form = (
             <form
-                onSubmit={(e) => e.preventDefault() }
+                onSubmit={e => e.preventDefault()}
                 className={classes.AddDocumentPageForm}
             >
-                {title}
-                {name}
-                {description}
-                {institution}
-                {hints}
-                <div className={classes.FormButtonGroup}>
-                    {addStepButton}
-                </div>
+                {this.canUseForm ? (
+                    <Fragment>
+                        {title}
+                        {name}
+                        {this.show && (
+                            <Fragment>
+                                {description}
+                                {institution}
+                                {hints}
+                            </Fragment>
+                        )}
+                        <div className={classes.FormButtonGroup}>
+                            {addStepButton}
+                        </div>
+                    </Fragment>
+                ) : (
+                    <p className={classes.FormInformation}>Add step down there</p>
+                )}
             </form>
         )
 
